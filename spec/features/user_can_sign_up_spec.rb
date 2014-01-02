@@ -13,6 +13,7 @@ feature 'user sign up', %Q{
     fill_in 'Email', with: 'test@aol.com'
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
+    save_and_open_page
     click_button 'Sign up'
     expect(page).to have_content('Welcome to JackFit')
   end
