@@ -1,0 +1,24 @@
+<h1>Welcome <%= @user.first_name %></h1>
+<% if @user.goals.empty? %>
+  <%= button_to "Create a Goal", new_goal_path, :method => "get" %>
+<% else %>
+  <table>
+    <th>Exercise</th>
+    <th>Starting Strength</th>
+    <th>Goal Weight</th>
+    <th>Goal Date</th>
+      <% @user.goals.each do |goal| %>
+        <tr>
+          <td><%= goal.exercise.name %></td>
+          <td><%= goal.starting_strength %></td>
+          <td><%= goal.goal_weight %></td>
+          <td><%= goal.goal_date %></td>
+          <td><%= link_to 'Go to goal', goal_path(goal) %></td>
+        </tr>
+      <% end %>
+  </table>
+  <%= button_to "Create Another Goal", new_goal_path, :method => "get" %>
+
+<% end %>
+
+
