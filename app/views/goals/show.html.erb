@@ -1,14 +1,13 @@
-
 <table>
   <th>Exercise</th>
   <th>Starting Strength</th>
   <th>Goal Weight</th>
   <th>Goal Date</th>
       <tr>
-        <td><%= @goal.exercise.name %></td>
+        <td><%= @goal.exercise.name.capitalize %></td>
         <td><%= @goal.starting_strength %></td>
         <td><%= @goal.goal_weight %></td>
-        <td><%= @goal.goal_date %></td>
+        <td><%= @goal.goal_date.strftime("%B %u, %Y") %></td>
       </tr>
 </table>
 

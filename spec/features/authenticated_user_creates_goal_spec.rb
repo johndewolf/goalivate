@@ -14,12 +14,23 @@ feature 'user creates a goal', %Q{
       select 'bench press', from: 'Exercise'
       fill_in 'Starting strength', with: 200
       fill_in 'Goal weight', with: 210
-      select '2014', from: 'Goal date'
+      select '2015', from: 'Goal date'
       click_button 'Create Goal'
+      expect(page).to have_content('Goal successfully created')
   end
 
 
-    scenario 'user enters in goal weight lower than starting strength'
+    scenario 'user enters in goal weight lower than starting strength' do
+        FactoryGirl.create(:exercise)
+      sign_in_as(user)
+      click_button 'Create a Goal'
+      select 'bench press', from: 'Exercise'
+      fill_in 'Starting strength', with: 220
+      fill_in 'Goal weight', with: 210
+      select '2014', from: 'Goal date'
+      click_button 'Create Goal'
+      expect(page).to have_content('Goal Weight must be greater than starting strength')
+  end
     scenario 'user enters goal date in the past or less than one week'
     scenario ''
 end

@@ -22,6 +22,6 @@ feature 'user sign in', %Q{
     fill_in 'Email', with: user.email
     fill_in 'Password', with: "passowrd"
     click_button 'Sign in'
-    expect(page).to have_content('Please check your email or password')
+    expect(page).to have_content('Invalid email or password.')
   end
 end
