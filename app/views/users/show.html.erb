@@ -1,4 +1,4 @@
-<h1>Welcome <%= @user.first_name %></h1>
+<h1><%= @user.first_name %>'s goals</h1>
 <% if @user.goals.empty? %>
   <%= button_to "Create a Goal", new_goal_path, :method => "get" %>
 <% else %>
@@ -12,7 +12,7 @@
           <td><%= goal.exercise.name %></td>
           <td><%= goal.starting_strength %></td>
           <td><%= goal.goal_weight %></td>
-          <td><%= goal.goal_date %></td>
+          <td><%= goal.goal_date.strftime("%B %d, %Y") %></td>
           <td><%= link_to 'Go to goal', goal_path(goal) %></td>
         </tr>
       <% end %>

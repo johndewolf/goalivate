@@ -2,6 +2,6 @@
   <%= f.association :exercise, value_method: :id %>
   <%= f.input :starting_strength %>
   <%= f.input :goal_weight %>
-  <%= f.input :goal_date, as: :date, start_year: Date.today.year  %>
+  <%= f.input :goal_date, as: :date  %>
   <%= f.button :submit %>
 <% end %>

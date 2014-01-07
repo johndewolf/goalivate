@@ -1,0 +1,11 @@
+<h2>Contact Us</h2>
+
+<%= simple_form_for @inquiry do |f| %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :email %>
+  <%= f.input :subject %>
+  <%= f.input :content %>
+  <%= f.button :submit, 'Submit Email' %>
+<% end %>
+

@@ -1,7 +1,9 @@
 BreakableToyTwo::Application.routes.draw do
 devise_for :users, :path => '', :path_names => {:sign_in => 'sign_in', :sign_out => 'sign_out'}
-resources :users
+resources :users, only: :show
 resources :goals
+resources :pages
+resources :contact_inquiries
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

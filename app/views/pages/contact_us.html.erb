@@ -1,0 +1,11 @@
+<h2>Contact buzz</h2>
+
+<%= simple_form_for :contact do |f| %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :email %>
+  <%= f.input :subject %>
+  <%= f.input :content %>
+  <%= f.button :submit %>
+<% end %>
+

@@ -44,6 +44,11 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
+  gem 'email_spec'
+end
+
+group :development do
+  gem 'mailcatcher'
 end
 
 # Use ActiveModel has_secure_password

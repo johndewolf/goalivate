@@ -13,38 +13,47 @@
       <h1><a href="/">JackFit</a></h1>
     </li>
   </ul>
-  <section class="top-bar-section">
-    <ul class="right">
-      <% if user_signed_in? %>
-      <li>
-        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-      </li>
-          <ul class="left">
-      <li>
-        <%= link_to 'My Goals', current_user %>
-      </li>
-    </ul>
-      <% else %>
-      <li>
-        <%= link_to 'Sign Up', new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to 'Sign In', new_user_session_path %>
-      </li>
 
-      <% end %>
-    </ul>
+  <section class="top-bar-section">
+    <% if user_signed_in? %>
+      <ul class="right">
+        <li>
+          <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+        </li>
+      </ul>
+      <ul class="left">
+        <li>
+          <%= link_to 'My Goals', current_user %>
+        </li>
+      </ul>
+      <% else %>
+      <ul class="right">
+        <li>
+          <%= link_to 'Sign Up', new_user_registration_path %>
+        </li>
+        <li>
+          <%= link_to 'Sign In', new_user_session_path %>
+        </li>
+      </ul>
+
+    <% end %>
   </section>
 </nav>
+<div class='flash'>
 <% flash.each do |name, msg| -%>
   <%= content_tag :div, msg, class: name %>
 <% end -%>
-
+</div>
 <div class="row">
   <div class="small-12 columns">
     <%= yield %>
   </div>
 </div>
-
+<div class="footer">
+  <ul>
+    <li>
+      <%= link_to 'Contact Us', new_contact_inquiry_path %>
+    </li>
+  </ul>
 </body>
 </html>

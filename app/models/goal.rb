@@ -4,13 +4,13 @@ class Goal < ActiveRecord::Base
   validate :date_is_in_the_future
   validate :goal_is_greater_than_start
   belongs_to :user,
-    inverse_of: :goals
+  inverse_of: :goals
 
   belongs_to :exercise,
-    inverse_of: :goals
+  inverse_of: :goals
 
   has_many :checkpoints,
-    inverse_of: :goal
+  inverse_of: :goal
 
 
   def goal_is_greater_than_start

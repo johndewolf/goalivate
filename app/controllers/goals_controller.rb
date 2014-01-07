@@ -18,11 +18,11 @@ class GoalsController < ApplicationController
 
   def delete
     @user = current_user
-    @goal = current_user.goals.last
+    @goal = current_user.goals.find(params[:id])
   end
 
   def show
-    @goal = Goal.find(params[:id])
+    @goal = current_user.goals.find(params[:id])
     @user = current_user
   end
 
