@@ -4,6 +4,14 @@ resources :users, only: :show
 resources :goals
 resources :pages
 resources :contact_inquiries
+
+
+resources :goals, only: [] do
+  resources :checkpoints
+end
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

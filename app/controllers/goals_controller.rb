@@ -2,7 +2,12 @@ class GoalsController < ApplicationController
   def index
   end
   def new
-    @goal = Goal.new
+    # @exercise = Exercise.first
+
+
+    @goals = Exercise.all.map do |exercise|
+      Goal.new(exercise: exercise)
+    end
   end
 
   def create
@@ -27,7 +32,7 @@ class GoalsController < ApplicationController
   end
 
   def edit
-    @goal = Goal.find(params[:id])
+    @goal = current_user.goals.find(params[:id])
   end
 
   def update
