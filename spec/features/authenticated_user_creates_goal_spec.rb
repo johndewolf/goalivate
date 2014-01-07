@@ -14,7 +14,7 @@ feature 'user creates a goal', %Q{
       select 'bench press', from: 'Exercise'
       fill_in 'Starting strength', with: 200
       fill_in 'Goal weight', with: 210
-      select Date.today.month + 1, from: 'Goal date'
+      select Date.today.year + 1, from: 'Goal date'
       click_button 'Create Goal'
       expect(page).to have_content('Goal successfully created')
   end

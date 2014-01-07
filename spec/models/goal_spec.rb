@@ -7,8 +7,8 @@ describe Goal do
   it { should have_valid(:goal_date).when(Date.today + 8) }
   it { should_not have_valid(:goal_date).when(nil) }
 
-  it { should have_valid(:exercise_id).when(1) }
-  it { should_not have_valid(:exercise_id).when(nil) }
+  it { should have_valid(:exercise).when(FactoryGirl.create(:exercise)) }
+  it { should_not have_valid(:exercise).when(nil) }
 
   it { should belong_to(:user) }
 
