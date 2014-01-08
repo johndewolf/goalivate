@@ -4,5 +4,4 @@ class Checkpoint < ActiveRecord::Base
 
   belongs_to :goal,
     inverse_of: :checkpoints
-
 end

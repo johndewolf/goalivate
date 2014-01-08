@@ -1,8 +1,8 @@
 <h2>Goal:</h2>
 <table>
   <th>Exercise</th>
-  <th>Starting Strength</th>
-  <th>Goal Weight</th>
+  <th>Starting Reps</th>
+  <th>Goal Reps</th>
   <th>Goal Date</th>
       <tr>
         <td><%= @goal.exercise.name.capitalize %></td>
@@ -15,3 +15,19 @@
 <%= link_to 'Edit', edit_goal_path(@goal) %>
 <%= link_to 'Delete', goal_path(@goal), method: :delete %>
 <%= link_to 'Back To User', user_path(@user) %>
+
+<h2>Checkpoints:</h2>
+<table>
+  <th>Week Number</th>
+  <th>Target: </th>
+  <th>User input</th>
+  <% week = 1 %>
+    <% @goal.checkpoints.each do |checkpoint| %>
+      <tr>
+        <td><%= week %></td>
+        <td><%= checkpoint.target %></td>
+        <td><%= checkpoint.user_input %></td>
+        <% week += 1 %>
+      </tr>
+    <% end %>
+</table>

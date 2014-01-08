@@ -1,4 +1,5 @@
 class Goal < ActiveRecord::Base
+  after_create :create_checkpoints
   validates_presence_of :exercise
   validates_presence_of :starting_max
   validates_presence_of :target_max
@@ -17,10 +18,16 @@ class Goal < ActiveRecord::Base
   inverse_of: :goal
 
   def create_checkpoints
-    weeks_in_goal.times do
-      Checkpoint.create(target: first_target, goal: self)
+    weekly_increase = ((target_max - starting_max.to_f) / days_in_goal) * 7
+    weeks_in_goal.times do |num|
+      Checkpoint.create(target: starting_max + (weekly_increase * num), goal: self)
     end
+      last = checkpoints.last
+      last.target = target_max
+      last.save
   end
+
+  private
 
   def goal_is_greater_than_start
     unless target_max > starting_max
@@ -34,14 +41,23 @@ class Goal < ActiveRecord::Base
     end
   end
 
-  def weeks_in_goal
-    ((end_date - created_at) / (24 * 60 * 60)).to_i / 7
+  def days_in_goal
+    (end_date - created_at) / (24 * 60 * 60)
   end
 
-  def first_target
-    increase_percent = (target_max.to_f - starting_max) / target_max
-    rep_increase = target_max * increase_percent
-    (starting_max + rep_increase / weeks_in_goal).round
+  def weeks_in_goal
+    weeks = days_in_goal / 7
+      if weeks % 1 != 0
+        (weeks + 1).to_i
+      else weeks
+      end
   end
+
+  # def make_target(target)
+  #   increase_percent = (target.to_f - starting_max) / target
+  #   rep_increase = target_max * increase_percent
+  #   binding.pry
+  #   (starting_max + rep_increase / weeks_in_goal).ceil
+  # end
 end
 
