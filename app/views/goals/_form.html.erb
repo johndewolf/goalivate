@@ -1,9 +1,8 @@
-<% @goals.each do |goal| %>
-<%= simple_form_for goal do |f| %>
+<%= simple_form_for @goal do |f| %>
+  <%= f.error_notification %>
   <%= f.association :exercise %>
-  <%= f.input :starting_strength %>
-  <%= f.input :goal_weight %>
-  <%= f.input :goal_date, as: :date  %>
+  <%= f.input :starting_max %>
+  <%= f.input :target_max %>
+  <%= f.input :end_date, label: 'Goal date', as: :date  %>
   <%= f.button :submit %>
-<% end %>
 <% end %>

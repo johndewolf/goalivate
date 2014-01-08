@@ -1,13 +1,9 @@
 class GoalsController < ApplicationController
   def index
   end
+
   def new
-    # @exercise = Exercise.first
-
-
-    @goals = Exercise.all.map do |exercise|
-      Goal.new(exercise: exercise)
-    end
+    @goal = Goal.new
   end
 
   def create
@@ -27,7 +23,7 @@ class GoalsController < ApplicationController
   end
 
   def show
-    @goal = current_user.goals.find(params[:id])
+    @goal = Goal.find(params[:id])
     @user = current_user
   end
 
@@ -54,7 +50,7 @@ class GoalsController < ApplicationController
   private
 
   def goal_params
-    params.require(:goal).permit(:starting_strength, :goal_weight,
-      :goal_date, :exercise_id, :user)
+    params.require(:goal).permit(:starting_max, :target_max,
+      :end_date, :exercise_id, :user)
   end
 end

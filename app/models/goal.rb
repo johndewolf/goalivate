@@ -1,12 +1,12 @@
 class Goal < ActiveRecord::Base
   validates_presence_of :exercise
-  validates_presence_of :starting_strength
-  validates_presence_of :goal_weight
-  validates_presence_of :goal_date
+  validates_presence_of :starting_max
+  validates_presence_of :target_max
+  validates_presence_of :end_date
   validate :date_is_in_the_future,
-    if: -> (goal) { goal.goal_date.present? }
+    if: -> (goal) { goal.end_date.present? }
   validate :goal_is_greater_than_start,
-    if: -> (goal) { goal.goal_weight.present? && goal.starting_strength.present? }
+    if: -> (goal) { goal.target_max.present? && goal.starting_max.present? }
   belongs_to :user,
   inverse_of: :goals
 
@@ -18,14 +18,14 @@ class Goal < ActiveRecord::Base
 
 
   def goal_is_greater_than_start
-    unless goal_weight > starting_strength
-      errors[:goal_weight] << 'Goal Weight must be greater than starting strength'
+    unless target_max > starting_max
+      errors[:target_max] << 'Goal max must be greater than starting '
     end
   end
 
   def date_is_in_the_future
-    unless goal_date > Date.today + 7
-      errors[:goal_date] << "must be 7 days in the future"
+    unless end_date > Date.today + 7
+      errors[:end_date] << "must be 7 days in the future"
     end
   end
 

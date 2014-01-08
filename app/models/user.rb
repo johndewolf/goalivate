@@ -11,8 +11,6 @@ class User < ActiveRecord::Base
   has_many :goals,
     inverse_of: :user
 
-  accepts_nested_attributes_for :goals
-
   def show
     @user = User.find(params[:id])
   end

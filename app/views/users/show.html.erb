@@ -1,24 +1,30 @@
 <h1><%= @user.first_name %>'s goals</h1>
-<% if @user.goals.empty? %>
+<% if @user.goals.empty? && @user != current_user %>
+  <h2>User has no goals</h2>
+<% elsif @user.goals.empty? && @user == current_user %>
+  <h2>You have no goals! Create one: </h2>
   <%= button_to "Create a Goal", new_goal_path, :method => "get" %>
 <% else %>
+
   <table>
     <th>Exercise</th>
-    <th>Starting Strength</th>
-    <th>Goal Weight</th>
+    <th>Starting Max</th>
+    <th>Target Max</th>
     <th>Goal Date</th>
       <% @user.goals.each do |goal| %>
         <tr>
           <td><%= goal.exercise.name %></td>
-          <td><%= goal.starting_strength %></td>
-          <td><%= goal.goal_weight %></td>
-          <td><%= goal.goal_date.strftime("%B %d, %Y") %></td>
+          <td><%= goal.starting_max %></td>
+          <td><%= goal.target_max%></td>
+          <td><%= goal.end_date.strftime("%B %d, %Y") %></td>
           <td><%= link_to 'Go to goal', goal_path(goal) %></td>
         </tr>
       <% end %>
   </table>
-  <%= button_to "Create Another Goal", new_goal_path, :method => "get" %>
-
 <% end %>
+<% if @user == current_user %>
+  <%= button_to "Create Another Goal", new_goal_path, :method => "get" %>
+<% end %>
+
 
 
