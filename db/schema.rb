@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140108005649) do
+ActiveRecord::Schema.define(version: 20140108190108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "checkpoints", force: true do |t|
-    t.integer  "target_weight", null: false
-    t.integer  "weight_lifted"
-    t.integer  "goal_id",       null: false
+    t.integer  "target",     null: false
+    t.integer  "user_input"
+    t.integer  "goal_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

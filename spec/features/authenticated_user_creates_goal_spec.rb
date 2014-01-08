@@ -7,30 +7,37 @@ feature 'user creates a goal', %Q{
 } do
   given(:user) { FactoryGirl.create(:user) }
 
-    scenario 'user enters in valid input and saves' do
-      FactoryGirl.create(:exercise)
-      sign_in_as(user)
-      click_button 'Create a Goal'
-      select 'bench press', from: 'Exercise'
-      fill_in 'Starting max', with: 200
-      fill_in 'Target max', with: 210
-      select Date.today.year + 1, from: 'Goal date'
-      click_button 'Create Goal'
-      expect(page).to have_content('Goal successfully created')
+  scenario 'user enters in valid input and saves' do
+    sign_in_as(user)
+    click_button 'Create a Goal'
+    select 'bench press', from: 'Exercise'
+    fill_in 'Starting max', with: 200
+    fill_in 'Target max', with: 210
+    select Date.today.year + 1, from: 'Goal date'
+    click_button 'Create Goal'
+    expect(page).to have_content('Goal successfully created')
   end
 
 
-    scenario 'user enters in goal weight lower than starting strength' do
-      FactoryGirl.create(:exercise)
-      sign_in_as(user)
-      click_button 'Create a Goal'
-      select 'bench press', from: 'Exercise'
-      fill_in 'Starting max', with: 220
-      fill_in 'Target max', with: 210
-      select Date.today.year + 1, from: 'Goal date'
-      click_button 'Create Goal'
-      expect(page).to have_content('Goal max must be greater than starting')
+  scenario 'user enters in goal weight lower than starting strength' do
+    sign_in_as(user)
+    click_button 'Create a Goal'
+    select 'bench press', from: 'Exercise'
+    fill_in 'Starting max', with: 220
+    fill_in 'Target max', with: 210
+    select Date.today.year + 1, from: 'Goal date'
+    click_button 'Create Goal'
+    expect(page).to have_content('Goal max must be greater than starting')
   end
-    scenario 'user enters goal date in the past or less than one week'
-    scenario ''
+
+  scenario 'user enters goal date in the past or less than one week' do
+    sign_in_as(user)
+    click_button 'Create a Goal'
+    select 'bench press', from: 'Exercise'
+    fill_in 'Starting max', with: 22
+    fill_in 'Target max', with: 25
+    click_button 'Create Goal'
+    expect(page).to have_content('must be 7 days in the future')
+  end
+
 end
