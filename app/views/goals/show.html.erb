@@ -12,14 +12,10 @@
       </tr>
 </table>
 
-<%= link_to 'Edit', edit_goal_path(@goal) %>
-<%= link_to 'Delete', goal_path(@goal), method: :delete %>
-<%= link_to 'Back To User', user_path(@user) %>
-
-<h2>Checkpoints:</h2>
+<h3>Checkpoints:</h3>
 <table>
   <th>Week Number</th>
-  <th>Target: </th>
+  <th>Target</th>
   <th>User input</th>
   <% week = 1 %>
     <% @goal.checkpoints.each do |checkpoint| %>
@@ -27,7 +23,12 @@
         <td><%= week %></td>
         <td><%= checkpoint.target %></td>
         <td><%= checkpoint.user_input %></td>
+        <td><%= link_to 'Update Checkpoint', edit_goal_checkpoint_path(@goal, checkpoint) %></td>
         <% week += 1 %>
       </tr>
     <% end %>
 </table>
+
+<%= link_to 'Edit', edit_goal_path(@goal) %> |
+<%= link_to 'Delete Goal', goal_path(@goal), method: :delete %> |
+<%= link_to 'Back To User', user_path(@user) %>

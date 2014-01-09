@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :exercise do
-    name 'bench press'
+    name 'squats'
   end
 end

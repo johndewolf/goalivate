@@ -1,0 +1,7 @@
+<h1>Checkpoint</h1>
+<p>Target: <%= @checkpoint.target%></p>
+<%= simple_form_for [@checkpoint.goal, @checkpoint] do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :user_input %>
+  <%= f.button :submit %>
+<% end %>

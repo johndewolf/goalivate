@@ -15,7 +15,8 @@ class Goal < ActiveRecord::Base
   inverse_of: :goals
 
   has_many :checkpoints,
-  inverse_of: :goal
+  inverse_of: :goal,
+  dependent: :destroy
 
   def create_checkpoints
     weekly_increase = ((target_max - starting_max.to_f) / days_in_goal) * 7
