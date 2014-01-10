@@ -9,7 +9,7 @@ class Checkpoint < ActiveRecord::Base
     inverse_of: :checkpoints
 
   def create_next_checkpoint
-    if goal_met? != true
+    if goal_met? != true && goal.checkpoints.last.user_input != nil
       Checkpoint.create(target: rep_increase, goal: goal, complete_by: calculate_complete)
     end
   end
@@ -46,4 +46,5 @@ class Checkpoint < ActiveRecord::Base
   def goal_met?
     true if goal.checkpoints.last.user_input == goal.target_max
   end
+
 end

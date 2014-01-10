@@ -14,6 +14,21 @@
 <% if @goal.checkpoints.last.goal_met? == true %>
   <h3>Congrats!</h3>
   <p>You hit your goal now do some dancing</p>
+<% elsif @goal.end_date_has_passed? %>
+  <h3>You're goal date has passed, I'm sorry. But feel free to extend your goal date</h3>
+    <h3>Checkpoints:</h3>
+    <table>
+      <th>Complete By:</th>
+      <th>Target</th>
+      <th>User input</th>
+        <% @goal.checkpoints.each do |checkpoint| %>
+          <tr>
+            <td><%= checkpoint.complete_by.strftime("%B %d, %Y") %></td>
+            <td><%= checkpoint.target %></td>
+            <td><%= checkpoint.user_input %></td>
+          </tr>
+        <% end %>
+    </table>
 <% else %>
   <h3>Checkpoints:</h3>
     <table>

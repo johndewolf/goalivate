@@ -23,6 +23,10 @@ class Goal < ActiveRecord::Base
     Checkpoint.create(target: starting_max + weekly_increase, goal: self, complete_by: Date.today + 7)
   end
 
+  def end_date_has_passed?
+    Date.today > end_date
+  end
+
   private
 
   def goal_is_greater_than_start
@@ -45,15 +49,9 @@ class Goal < ActiveRecord::Base
     weeks = days_in_goal / 7
       if weeks % 1 != 0
         (weeks + 1).to_i
-      else weeks
+      else
+        weeks
       end
   end
-
-  # def make_target(target)
-  #   increase_percent = (target.to_f - starting_max) / target
-  #   rep_increase = target_max * increase_percent
-  #   binding.pry
-  #   (starting_max + rep_increase / weeks_in_goal).ceil
-  # end
 end
 

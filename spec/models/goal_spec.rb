@@ -16,4 +16,9 @@ describe Goal do
   it { should belong_to(:user) }
 
   it { should have_many(:checkpoints) }
+
+  it 'returns false if the end date is in the future' do
+    goal = FactoryGirl.create(:goal)
+    expect(goal.end_date_has_passed?).to eql(false)
+  end
 end

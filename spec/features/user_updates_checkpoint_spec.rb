@@ -35,4 +35,23 @@ feature 'user creates goal and updates checkpoint' do
     end
     expect(Checkpoint.all.count).to eql(11)
     end
+
+  scenario 'user hit goal target' do
+    sign_in_as(goal.user)
+    click_on 'My Goals'
+    click_on 'Go to goal'
+    click_on 'Update Checkpoint'
+    fill_in 'User input', with: goal.target_max
+    expect(Checkpoint.all.count).to eql(1)
+  end
+
+  scenario 'goal date is in the past' do
+    goal = FactoryGirl.build(:goal, end_date: Date.yesterday)
+    goal.save(validate: false)
+    sign_in_as(goal.user)
+    click_on 'My Goals'
+    click_on 'Go to goal'
+    save_and_open_page
+    expect(page).to_not have_content('Update Checkpoint')
+  end
 end
