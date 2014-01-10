@@ -9,8 +9,8 @@ class Checkpoint < ActiveRecord::Base
     inverse_of: :checkpoints
 
   def create_next_checkpoint
-    if goal_met? != true && goal.checkpoints.last.user_input != nil
-      Checkpoint.create(target: rep_increase, goal: goal, complete_by: calculate_complete)
+    if goal.goal_met? != true && goal.checkpoints.last.user_input != nil
+      Checkpoint.create(target: rep_increase, goal: goal, complete_by: calculate_complete_by)
     end
   end
 
@@ -29,20 +29,12 @@ class Checkpoint < ActiveRecord::Base
     end
   end
 
-  def calculate_complete
-    if days_remaining < 7
-      goal.end_date
-    else
-      Date.today + 7
-    end
+  def calculate_complete_by
+    days_remaining < 7 ? goal.end_date : Date.today + 7
   end
 
   def checkpoints_remaining
     (days_remaining / 7.0).ceil
-  end
-
-  def goal_met?
-    goal.checkpoints.last.user_input == goal.target_max
   end
 
 end

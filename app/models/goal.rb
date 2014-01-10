@@ -27,6 +27,11 @@ class Goal < ActiveRecord::Base
     Date.today > end_date
   end
 
+  def goal_met?
+    checkpoints.last.user_input == target_max
+  end
+
+
   private
 
   def goal_is_greater_than_start
