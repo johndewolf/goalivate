@@ -20,9 +20,7 @@ class Checkpoint < ActiveRecord::Base
 
   def rep_increase
     increase = ((goal.target_max - goal.checkpoints.last.user_input) / checkpoints_remaining)
-    if increase == 0
-      increase = increase + 1
-    end
+    increase += 1 if increase == 0
     next_target = goal.checkpoints.last.user_input + increase
     if next_target == goal.target_max - 1
       goal.target_max
@@ -44,7 +42,7 @@ class Checkpoint < ActiveRecord::Base
   end
 
   def goal_met?
-    true if goal.checkpoints.last.user_input == goal.target_max
+    goal.checkpoints.last.user_input == goal.target_max
   end
 
 end
