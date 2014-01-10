@@ -9,14 +9,14 @@ class Goal < ActiveRecord::Base
   validate :goal_is_greater_than_start,
     if: -> (goal) { goal.target_max.present? && goal.starting_max.present? }
   belongs_to :user,
-  inverse_of: :goals
+    inverse_of: :goals
 
   belongs_to :exercise,
-  inverse_of: :goals
+    inverse_of: :goals
 
   has_many :checkpoints,
-  inverse_of: :goal,
-  dependent: :destroy
+    inverse_of: :goal,
+    dependent: :destroy
 
   def create_first_checkpoint
     weekly_increase = ((target_max - starting_max.to_f) / days_in_goal) * 7
