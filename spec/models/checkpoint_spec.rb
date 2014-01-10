@@ -32,6 +32,6 @@ describe Checkpoint do
   it 'increases the target reps and creates new checkpoint on update' do
     checkpoint.user_input = checkpoint.target + 2
     checkpoint.save
-    expect(Checkpoint.last.target).should be > (Checkpoint.first.target)
+    expect(Checkpoint.last.target).to be > (Checkpoint.first.target)
   end
 end
