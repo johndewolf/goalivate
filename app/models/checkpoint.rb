@@ -3,6 +3,7 @@ class Checkpoint < ActiveRecord::Base
 
   validates_presence_of :goal
   validates_presence_of :target
+  validates :user_input, numericality: { greater_than_or_equal_to: 0 }, allow_blank: true
   validates_presence_of :complete_by
 
   belongs_to :goal,

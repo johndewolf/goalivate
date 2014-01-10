@@ -1,7 +1,7 @@
 class Goal < ActiveRecord::Base
   after_create :create_first_checkpoint
   validates_presence_of :exercise
-  validates_presence_of :starting_max
+  validates :starting_max, numericality: { greater_than_or_equal_to: 0 }
   validates_presence_of :target_max
   validates_presence_of :end_date
   validate :date_is_in_the_future,

@@ -3,7 +3,7 @@
   <h2>User has no goals</h2>
 <% elsif @user.goals.empty? && @user == current_user %>
   <h2>You have no goals! Create one: </h2>
-  <%= button_to "Create a Goal", new_goal_path, :method => "get" %>
+  <%= link_to "Create a Goal", new_goal_path, :method => "get" %>
 <% else %>
 
   <table>
@@ -21,10 +21,7 @@
         </tr>
       <% end %>
   </table>
-<% end %>
 <% if @user == current_user %>
-  <%= button_to "Create Another Goal", new_goal_path, :method => "get" %>
+  <%= link_to "Create Another Goal", new_goal_path, :method => "get" %>
 <% end %>
-
-
-
+<% end %>

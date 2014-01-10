@@ -6,7 +6,7 @@ describe Goal do
   it { should_not have_valid(:target_max).when(nil) }
 
   it { should have_valid(:starting_max).when(100) }
-  it { should_not have_valid(:starting_max).when(nil) }
+  it { should_not have_valid(:starting_max).when(nil, -1) }
 
   it { should have_valid(:end_date).when(Date.today + 8) }
   it { should_not have_valid(:end_date).when(nil) }
