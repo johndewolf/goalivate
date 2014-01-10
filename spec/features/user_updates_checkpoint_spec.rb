@@ -51,7 +51,6 @@ feature 'user creates goal and updates checkpoint' do
     sign_in_as(goal.user)
     click_on 'My Goals'
     click_on 'Go to goal'
-    save_and_open_page
     expect(page).to_not have_content('Update Checkpoint')
   end
 end
