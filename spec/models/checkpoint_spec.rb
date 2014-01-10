@@ -9,5 +9,8 @@ describe Checkpoint do
   it { should have_valid(:goal).when(FactoryGirl.create(:goal)) }
   it { should_not have_valid(:goal).when(nil) }
 
+  it { should have_valid(:complete_by).when(Date.today + 7) }
+  it { should_not have_valid(:complete_by).when(nil, '') }
+
   it { should have_valid(:user_input).when(200) }
 end

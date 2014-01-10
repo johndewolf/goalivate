@@ -8,26 +8,29 @@
         <td><%= @goal.exercise.name.capitalize %></td>
         <td><%= @goal.starting_max %></td>
         <td><%= @goal.target_max %></td>
-        <td><%= @goal.end_date.strftime("%B %u, %Y") %></td>
+        <td><%= @goal.end_date.strftime("%B %d, %Y") %></td>
       </tr>
 </table>
+<% if @goal.checkpoints.last.goal_met? == true %>
+  <h3>Congrats!</h3>
+  <p>You hit your goal now do some dancing</p>
+<% else %>
+  <h3>Checkpoints:</h3>
+    <table>
+      <th>Complete By:</th>
+      <th>Target</th>
+      <th>User input</th>
+        <% @goal.checkpoints.each do |checkpoint| %>
+          <tr>
+            <td><%= checkpoint.complete_by.strftime("%B %d, %Y") %></td>
+            <td><%= checkpoint.target %></td>
+            <td><%= checkpoint.user_input %></td>
+          </tr>
+        <% end %>
 
-<h3>Checkpoints:</h3>
-<table>
-  <th>Week Number</th>
-  <th>Target</th>
-  <th>User input</th>
-  <% week = 1 %>
-    <% @goal.checkpoints.each do |checkpoint| %>
-      <tr>
-        <td><%= week %></td>
-        <td><%= checkpoint.target %></td>
-        <td><%= checkpoint.user_input %></td>
-        <td><%= link_to 'Update Checkpoint', edit_goal_checkpoint_path(@goal, checkpoint) %></td>
-        <% week += 1 %>
-      </tr>
-    <% end %>
-</table>
+        <tr align="center"><td COLSPAN=3><%= link_to 'Update Checkpoint', edit_goal_checkpoint_path(@goal, @goal.checkpoints.last) %></td></tr>
+    </table>
+<% end %>
 
 <%= link_to 'Edit', edit_goal_path(@goal) %> |
 <%= link_to 'Delete Goal', goal_path(@goal), method: :delete %> |

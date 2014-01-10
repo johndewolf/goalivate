@@ -1,5 +1,5 @@
 class Goal < ActiveRecord::Base
-  after_create :create_checkpoints
+  after_create :create_first_checkpoint
   validates_presence_of :exercise
   validates_presence_of :starting_max
   validates_presence_of :target_max
@@ -18,14 +18,9 @@ class Goal < ActiveRecord::Base
   inverse_of: :goal,
   dependent: :destroy
 
-  def create_checkpoints
+  def create_first_checkpoint
     weekly_increase = ((target_max - starting_max.to_f) / days_in_goal) * 7
-    weeks_in_goal.times do |num|
-      Checkpoint.create(target: starting_max + (weekly_increase * num), goal: self)
-    end
-      last = checkpoints.last
-      last.target = target_max
-      last.save
+    Checkpoint.create(target: starting_max + weekly_increase, goal: self, complete_by: Date.today + 7)
   end
 
   private
