@@ -11,7 +11,7 @@
         <td><%= @goal.end_date.strftime("%B %d, %Y") %></td>
       </tr>
 </table>
-<% if @goal.goal_met? == true %>
+<% if @goal.completed? == true %>
   <h3>Congrats!</h3>
   <p>You hit your goal now do some dancing</p>
 <% elsif @goal.end_date_has_passed? %>

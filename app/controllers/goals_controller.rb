@@ -10,6 +10,7 @@ class GoalsController < ApplicationController
     @goal = current_user.goals.create(goal_params)
 
     if @goal.save
+      Checkpoint.next_for(@goal)
       redirect_to user_path(current_user),
         notice: "Goal successfully created"
     else
