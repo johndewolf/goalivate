@@ -5,22 +5,59 @@
   <h2>You have no goals! Create one: </h2>
   <%= link_to "Create a Goal", new_goal_path, :method => "get" %>
 <% else %>
-
-  <table>
-    <th>Exercise</th>
-    <th>Starting Max</th>
-    <th>Target Max</th>
-    <th>Goal Date</th>
-      <% @user.goals.each do |goal| %>
-        <tr>
-          <td><%= goal.exercise.name %></td>
-          <td><%= goal.starting_max %></td>
-          <td><%= goal.target_max%></td>
-          <td><%= goal.end_date.strftime("%B %d, %Y") %></td>
-          <td><%= link_to 'Go to goal', goal_path(goal) %></td>
-        </tr>
+  <div class="row">
+    <div class="large-7 columns">
+      <h2>Active Goals</h2>
+      <table>
+        <th>Exercise</th>
+        <th>Starting Max</th>
+        <th>Target Max</th>
+        <th>Goal Date</th>
+          <% @user.goals.each do |goal| %>
+            <tr>
+              <% if goal.completed? != true && goal.end_date > Date.today %>
+                  <td><%= goal.exercise.name %></td>
+                  <td><%= goal.starting_max %></td>
+                  <td><%= goal.target_max%></td>
+                  <td><%= goal.end_date.strftime("%B %d, %Y") %></td>
+                  <td><%= link_to 'Go to goal', goal_path(goal) %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+    <% if @user.goals.any?{ |goal| goal.completed? } ||
+          @user.goals.any?{ |goal| goal.end_date < Date.today } %>
+      <div class="row">
+        <div class="large-8 columns">
+          <h2>Past Goals</h2>
+          <table>
+            <th>Exercise</th>
+            <th>Starting Max</th>
+            <th>Target Max</th>
+            <th>Days in Goal</th>
+            <th>Completed?</th>
+              <% @user.goals.each do |goal| %>
+                <tr>
+                  <% if goal.completed? == true || goal.end_date < Date.today %>
+                      <td><%= goal.exercise.name %></td>
+                      <td><%= goal.starting_max %></td>
+                      <td><%= goal.target_max%></td>
+                      <td><%= goal.days_in_goal %></td>
+                      <% if goal.completed? == true %>
+                        <td>yes</td>
+                      <% else %>
+                        <td>no</td>
+                      <% end %>
+                      <td><%= link_to 'Go to goal', goal_path(goal) %></td>
+                  <% end %>
+                </tr>
+              <% end %>
+            </table>
+        </div>
       <% end %>
-  </table>
+  </div>
 <% if @user == current_user %>
   <%= link_to "Create Another Goal", new_goal_path, :method => "get" %>
 <% end %>

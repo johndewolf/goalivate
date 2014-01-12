@@ -56,6 +56,4 @@ feature 'user creates goal and updates checkpoint' do
     click_on 'Go to goal'
     expect(page).to_not have_content('Update Checkpoint')
   end
-
-
 end

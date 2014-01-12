@@ -18,10 +18,10 @@ class Goal < ActiveRecord::Base
     inverse_of: :goal,
     dependent: :destroy
 
-  def create_first_checkpoint
-    weekly_increase = ((target_max - starting_max.to_f) / days_in_goal) * 7
-    Checkpoint.create(target: starting_max + weekly_increase, goal: self, complete_by: Date.today + 7)
-  end
+  # def create_first_checkpoint
+  #   weekly_increase = ((target_max - starting_max.to_f) / days_in_goal) * 7
+  #   Checkpoint.create(target: starting_max + weekly_increase, goal: self, complete_by: Date.today + 7)
+  # end
 
   def end_date_has_passed?
     Date.today > end_date
@@ -53,6 +53,10 @@ class Goal < ActiveRecord::Base
     end
   end
 
+  def days_in_goal
+    ((end_date - created_at) / (60 * 60 * 24)).to_i
+  end
+
 
   private
 
@@ -68,13 +72,13 @@ class Goal < ActiveRecord::Base
     end
   end
 
-  def weeks_in_goal
-    weeks = days_in_goal / 7
-      if weeks % 1 != 0
-        (weeks + 1).to_i
-      else
-        weeks
-      end
-  end
+  # def weeks_in_goal
+  #   weeks = days_in_goal / 7
+  #     if weeks % 1 != 0
+  #       (weeks + 1).to_i
+  #     else
+  #       weeks
+  #     end
+  # end
 end
 
