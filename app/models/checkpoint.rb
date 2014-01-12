@@ -8,14 +8,11 @@ class Checkpoint < ActiveRecord::Base
     inverse_of: :checkpoints
 
   def self.next_for(goal)
+    goal.delete_invalid_checkpoints
     goal.checkpoints.create(
       target: unit_increase(goal),
       complete_by: calculate_complete_by(goal)
     )
-
-    # if goal.goal_met? != true && goal.checkpoints.last.user_input != nil
-    #   Checkpoint.create(target: rep_increase, goal: goal, complete_by: calculate_complete_by)
-    # end
   end
 
   def self.completed
@@ -50,7 +47,11 @@ class Checkpoint < ActiveRecord::Base
 
   def self.last_input_or_starting_max(goal)
     if goal.checkpoints.completed.any?
-      goal.checkpoints.last.user_input || goal.checkpoints[-2].user_input
+      if goal.checkpoints.last.user_input != nil
+        goal.checkpoints.last.user_input
+      else
+        where("user_input IS NOT null").last.user_input
+      end
     else
       goal.starting_max
     end

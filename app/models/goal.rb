@@ -28,7 +28,7 @@ class Goal < ActiveRecord::Base
   end
 
   def completed?
-    if checkpoints.length > 1
+    if checkpoints.length > 1 && checkpoints[-2].user_input != nil
       checkpoints[-2].user_input >= target_max
     end
   end
@@ -43,6 +43,14 @@ class Goal < ActiveRecord::Base
 
   def days_remaining
     (end_date.to_date - Date.today).to_i
+  end
+
+  def delete_invalid_checkpoints
+    checkpoints.each do |checkpoint|
+      if checkpoint.user_input == nil && checkpoint != checkpoints.last
+        checkpoint.delete
+      end
+    end
   end
 
 

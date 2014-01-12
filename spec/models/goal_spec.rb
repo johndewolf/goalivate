@@ -61,4 +61,16 @@ describe Goal do
       expect(goal.days_remaining).to eql(9)
     end
   end
+
+  describe ".delete invalid checkpoints" do
+    context "there are extra checkpoints due to user hitting the back button in browser" do
+      it 'returns the correct amount of checkpoints' do
+        goal = FactoryGirl.create(:goal, target_max: 30)
+        checkpoint1 = FactoryGirl.create(:checkpoint, goal: goal)
+        checkpoint2 = FactoryGirl.create(:checkpoint, goal: goal, user_input: 12)
+        goal.delete_invalid_checkpoints
+        expect(goal.checkpoints.count).to eql(1)
+      end
+    end
+  end
 end
