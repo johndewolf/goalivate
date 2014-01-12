@@ -5,8 +5,8 @@ feature 'user creates a goal', %Q{
   I want to create a goal
   So that I can track my progress
 } do
-  given(:user) { FactoryGirl.create(:user) }
-  before(:each) { FactoryGirl.create(:exercise) }
+  let(:user) { FactoryGirl.create(:user) }
+  let!(:exerise) { FactoryGirl.create(:exercise) }
 
   scenario 'user enters in valid input and saves' do
     sign_in_as(user)

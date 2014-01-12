@@ -31,7 +31,6 @@ describe Goal do
 
   describe "#remaining_units" do
     let(:goal) { FactoryGirl.create(:goal, target_max: 100) }
-
     context "no checkpoints have been completed" do
       it "returns the amount of remaining units" do
         expect(goal.remaining_units).to eq 100

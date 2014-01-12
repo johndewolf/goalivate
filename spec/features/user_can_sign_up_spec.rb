@@ -26,7 +26,7 @@ feature 'user sign up', %Q{
       expect(page).to have_content("Email can't be blank")
       expect(page).to have_content("Password can't be blank")
 
-    end
+  end
 
   scenario 'with password confirmation not matching' do
     visit root_path
