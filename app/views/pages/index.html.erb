@@ -12,8 +12,16 @@
       </div>
     <% else %>
       <% if current_user.goals.any? %>
-        <p>go to goal</p>
-      <% end %>
+        <h2>Current Goals</h2>
+        <% current_user.goals.each do |goal| %>
+          <% if goal.completed? == false && goal.end_date > Date.today %>
+            <table>
+            </table>
+        <% end %>
+        <% end %>
+      <% else %>
+            <h2>You have no goals!</h2>
+          <% end %>
     <% end %>
   </div>
 </div>
