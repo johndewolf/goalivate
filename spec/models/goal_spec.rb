@@ -92,6 +92,25 @@ describe Goal do
     end
   end
 
+  describe "#active_goals" do
+    context "there are goals with the end date in the future and
+    user has not hit the target" do
+      it "returns true" do
+        goal = FactoryGirl.create(:goal)
+        expect(goal.active_goal).to eql(true)
+      end
+
+    end
+    context "there are goals in the past" do
+      it "returns false" do
+        goal = FactoryGirl.build(:goal, end_date: Date.yesterday)
+        goal.save(validate: false)
+        expect(goal.active_goal).to eql(false)
+      end
+    end
+    context "user hit the target"
+  end
+
 
   #   context 'it does not return inactive goals' do
   #   goal2 = FactoryGirl.build(:goal, end_date: Date.yesterday )

@@ -31,10 +31,10 @@ feature 'user creates goal and updates checkpoint' do
     click_on 'Go to goal'
     10.times do
       click_on 'Update Checkpoint'
-      fill_in 'User input', with: goal.checkpoints.last.target - 1
+      fill_in 'User input', with: goal.checkpoints.last.target + 1
       click_on 'Update Checkpoint'
     end
-    expect(Checkpoint.all.count).to eql(11)
+    expect(page).to have_content(goal.checkpoints.last.target)
     end
 
   scenario 'user hit goal target' do

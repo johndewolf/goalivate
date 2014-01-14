@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :checkpoint do
     goal
-    target 50
+    target 22
     complete_by Date.today + 1.week
 
     trait :completed do
