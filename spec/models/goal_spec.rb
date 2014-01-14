@@ -74,6 +74,24 @@ describe Goal do
     end
   end
 
+  describe "#completed" do
+    context "it returns true or false if the goal is completed" do
+      it "returns false if the goal is not completed" do
+        goal = FactoryGirl.create(:goal)
+        expect(goal.completed?).to eql(false)
+      end
+    end
+
+    context "it returns true or false if the goal is completed" do
+      it "returns true if the user input for checkpoint is eql to goal target" do
+        goal = FactoryGirl.create(:goal)
+        FactoryGirl.create(:checkpoint, goal: goal, user_input: goal.target_max)
+        FactoryGirl.create(:checkpoint, goal: goal)
+        expect(goal.completed?).to eql(true)
+      end
+    end
+  end
+
 
   #   context 'it does not return inactive goals' do
   #   goal2 = FactoryGirl.build(:goal, end_date: Date.yesterday )

@@ -11,7 +11,7 @@ body {
 }
 
 .content {
-  background-color: white;
+  margin-top: 10em;
 }
 
 .bg {
@@ -27,13 +27,19 @@ body {
   z-index: -1;
 }
 
-.sign_in_box{
+.sign_in_box {
   margin-left: 5em;
   width: 100%;
   height: 100%;
   border: 5px #e5e5e5;
+  border-style: solid;
   border-radius: 5px;
   vertical-align: right;
+  background: rgba (184, 134, 11, 0.4);
+}
+
+.header_for_signin {
+  margin-left: 5em;
 }
 
 .sign_in_box > form {

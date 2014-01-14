@@ -13,7 +13,9 @@ require 'spec_helper'
       goal1 = FactoryGirl.create(:goal, user: user)
       checkpoint1 = FactoryGirl.create(:checkpoint, goal: goal1)
       goal2 = FactoryGirl.create(:goal, user: user)
-      checkpoint2 = FactoryGirl.create(:checkpoint, goal: goal2, user_input: goal2.target_max)
+      FactoryGirl.create(:checkpoint, goal: goal2)
+      FactoryGirl.create(:checkpoint, goal: goal2, user_input: goal2.target_max)
+      FactoryGirl.create(:checkpoint, goal: goal2)
       visit "/users/#{user.id}"
       expect(page).to have_content('Active Goals')
       expect(page).to have_content('Past Goals')
@@ -24,7 +26,6 @@ require 'spec_helper'
       goal = FactoryGirl.create(:goal, user: user)
       sign_in_as(user)
       visit "/users/#{user.id}"
-      save_and_open_page
       expect(page).to_not have_content('Past Goals')
     end
 end

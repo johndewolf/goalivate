@@ -28,8 +28,10 @@ class Goal < ActiveRecord::Base
   end
 
   def completed?
-    if checkpoints.length > 1 && checkpoints[-2].user_input != nil
+    if checkpoints.length > 1
       checkpoints[-2].user_input >= target_max
+    else
+      false
     end
   end
 

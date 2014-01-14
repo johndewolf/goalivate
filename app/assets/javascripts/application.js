@@ -16,4 +16,7 @@
 //= require_tree .
 //= require_self
 
-$(function(){ $(document).foundation(); });
+$(function(){
+  $(document).foundation();
+    setTimeout(function(){ $('.alert-box').fadeOut() }, 2500);
+});

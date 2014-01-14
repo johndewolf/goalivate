@@ -4,6 +4,7 @@
      <title><%= content_for?(:title) ? yield(:title) : "JackFit" %></title>
     <%= stylesheet_link_tag    "application", media: "all" %>
     <%= csrf_meta_tags %>
+    <link rel="stylesheet" href="http://basehold.it/24">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
     <body class="bg">
@@ -43,11 +44,13 @@
           </nav>
         <div class="row">
           <div class="small-12 columns">
-            <div class='flash'>
-              <% flash.each do |name, msg| -%>
-                <%= content_tag :div, msg, class: name %>
-              <% end -%>
-            </div>
+            <% if flash.any? %>
+              <div class='alert-box'>
+                <% flash.each do |name, msg| -%>
+                  <%= content_tag :div, msg, class: name %>
+                <% end -%>
+              </div>
+            <% end %>
           </div>
         </div>
         <div class="row">
