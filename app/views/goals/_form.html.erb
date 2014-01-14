@@ -1,7 +1,7 @@
 <%= simple_form_for @goal do |f| %>
   <%= f.error_notification %>
   <%= f.association :exercise %>
-  <%= f.input :starting_max %>
+  <%= f.input :starting_max, title: "How many can you do now?", data: { tooltip: true } %>
   <%= f.input :target_max %>
   <%= f.input :end_date, label: 'Goal date', as: :date  %>
   <%= f.button :submit %>

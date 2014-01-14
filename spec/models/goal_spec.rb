@@ -73,4 +73,12 @@ describe Goal do
       end
     end
   end
+
+
+  #   context 'it does not return inactive goals' do
+  #   goal2 = FactoryGirl.build(:goal, end_date: Date.yesterday )
+  #   goal3 = FactoryGirl.create(:goal)
+  #   checkpoint = FactoryGirl.create(:checkpoint, target: goal3.target_max)
+  #   goal2.save(validate: false)
+  # end
 end

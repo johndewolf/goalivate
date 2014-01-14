@@ -1,59 +1,67 @@
 <!DOCTYPE html>
 <html>
-<head>
-   <title><%= content_for?(:title) ? yield(:title) : "JackFit" %></title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<nav class="top-bar">
-  <ul class="title-area">
-    <li class="name">
-      <h1><a href="/">JackFit</a></h1>
-    </li>
-  </ul>
+  <head>
+     <title><%= content_for?(:title) ? yield(:title) : "JackFit" %></title>
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+    <body class="bg">
+      <div class="container">
+          <nav class="top-bar" data-topbar>
+            <ul class="title-area">
+              <li class="name">
+                <h1><a href="/">JackFit</a></h1>
+              </li>
+              <li class="toggle-topbar"><a href="#">Menu</a></li>
+            </ul>
 
-  <section class="top-bar-section">
-    <% if user_signed_in? %>
-      <ul class="right">
-        <li>
-          <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-        </li>
-      </ul>
-      <ul class="left">
-        <li>
-          <%= link_to 'My Goals', current_user %>
-        </li>
-      </ul>
-      <% else %>
-      <ul class="right">
-        <li>
-          <%= link_to 'Sign Up', new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to 'Sign In', new_user_session_path %>
-        </li>
-      </ul>
-
-    <% end %>
-  </section>
-</nav>
-<div class='flash'>
-<% flash.each do |name, msg| -%>
-  <%= content_tag :div, msg, class: name %>
-<% end -%>
-</div>
-<div class="row">
-  <div class="small-12 columns">
-    <%= yield %>
-  </div>
-</div>
-<div class="footer">
-  <ul>
-    <li>
-      <%= link_to 'Contact Us', new_contact_inquiry_path %>
-    </li>
-  </ul>
-</body>
+            <section class="top-bar-section">
+              <% if user_signed_in? %>
+                <ul class="right">
+                  <li>
+                    <%= link_to 'Sign Out', destroy_user_session_path,
+                    method: :delete %>
+                  </li>
+                </ul>
+                <ul class="left">
+                  <li>
+                    <%= link_to 'My Goals', current_user %>
+                  </li>
+                </ul>
+              <% else %>
+                <ul class="right">
+                  <li>
+                    <%= link_to 'Sign Up', new_user_registration_path %>
+                  </li>
+                  <li>
+                    <%= link_to 'Sign In', new_user_session_path %>
+                  </li>
+                </ul>
+              <% end %>
+            </section>
+          </nav>
+        <div class="row">
+          <div class="small-12 columns">
+            <div class='flash'>
+              <% flash.each do |name, msg| -%>
+                <%= content_tag :div, msg, class: name %>
+              <% end -%>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 columns">
+            <%= yield %>
+          </div>
+        </div>
+        <div class="footer">
+          <ul>
+            <li><%= link_to 'Contact Us', new_contact_inquiry_path %></li>
+            <li>|</li>
+            <li><%= link_to 'About this Site', '#' %></li>
+          </ul>
+      </div>
+      <%= javascript_include_tag "application" %>
+    </body>
 </html>

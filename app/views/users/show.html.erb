@@ -6,7 +6,7 @@
   <%= link_to "Create a Goal", new_goal_path, :method => "get" %>
 <% else %>
   <div class="row">
-    <div class="large-7 columns">
+    <div class="small-12 columns">
       <h2>Active Goals</h2>
       <table>
         <th>Exercise</th>
@@ -30,7 +30,7 @@
     <% if @user.goals.any?{ |goal| goal.completed? } ||
           @user.goals.any?{ |goal| goal.end_date < Date.today } %>
       <div class="row">
-        <div class="large-8 columns">
+        <div class="small-12 columns">
           <h2>Past Goals</h2>
           <table>
             <th>Exercise</th>
@@ -58,7 +58,7 @@
         </div>
       <% end %>
   </div>
-<% if @user == current_user %>
-  <%= link_to "Create Another Goal", new_goal_path, :method => "get" %>
-<% end %>
+  <% if @user == current_user %>
+    <%= link_to "Create Another Goal", new_goal_path, :method => "get" %>
+  <% end %>
 <% end %>

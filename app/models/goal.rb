@@ -57,7 +57,10 @@ class Goal < ActiveRecord::Base
     ((end_date - created_at) / (60 * 60 * 24)).to_i
   end
 
-
+  def active_goal
+    completed? == false && end_date < Date.today
+    binding.pry
+  end
   private
 
   def goal_is_greater_than_start
