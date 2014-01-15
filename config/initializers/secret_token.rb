@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-BreakableToyTwo::Application.config.secret_key_base = 'efe47bb3a549117fe53441cca8285748c89823318ec420535e4c70d94cafd818076b769aa0850dec28e2d50844f8015bd07a69fca783cc0b05795e3896735959'
+BreakableToyTwo::Application.config.secret_key_base = ENV['SECRET_KEY']
