@@ -22,14 +22,6 @@ class Goal < ActiveRecord::Base
     Date.today > end_date
   end
 
-  def completed?
-    if checkpoints.length > 1
-      checkpoints[-2].user_input >= target_max
-    else
-      false
-    end
-  end
-
   def remaining_units
     if checkpoints.completed.any?
       target_max - checkpoints.last.user_input
@@ -54,16 +46,24 @@ class Goal < ActiveRecord::Base
     ((end_date - created_at) / (60 * 60 * 24)).to_i
   end
 
-  def active_goal
-    completed? == false && end_date > Date.today
-  end
+  # def active_goal
+  #   completed? == false && end_date > Date.today
+  # end
 
   def self.active
     incomplete.where("end_date >= ?", Date.today)
   end
 
+  def self.past
+    where("end_date <= ? OR completed_on IS NOT null", Date.today)
+  end
+
   def self.incomplete
     where(completed_on: nil)
+  end
+
+  def self.completed
+    where("completed_on IS NOT null")
   end
 
   private

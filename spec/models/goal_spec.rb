@@ -18,16 +18,6 @@ describe Goal do
 
   it { should have_many(:checkpoints) }
 
-  it 'returns false if the end date is in the future' do
-    expect(goal.end_date_has_passed?).to eql(false)
-  end
-
-  it 'returns true if the user input equals the goal target' do
-    goal = FactoryGirl.create(:goal, target_max: 25)
-    FactoryGirl.create(:checkpoint, goal: goal, user_input: goal.target_max)
-    FactoryGirl.create(:checkpoint, goal: goal, user_input: nil)
-    expect(goal.completed?).to eql(true)
-  end
 
   describe "#remaining_units" do
     let(:goal) { FactoryGirl.create(:goal, target_max: 100) }
@@ -74,48 +64,41 @@ describe Goal do
     end
   end
 
-  describe "#completed" do
-    context "it returns true or false if the goal is completed" do
-      it "returns false if the goal is not completed" do
-        goal = FactoryGirl.create(:goal)
-        expect(goal.completed?).to eql(false)
-      end
-    end
-
-    context "it returns true or false if the goal is completed" do
-      it "returns true if the user input for checkpoint is eql to goal target" do
-        goal = FactoryGirl.create(:goal)
-        FactoryGirl.create(:checkpoint, goal: goal, user_input: goal.target_max)
-        FactoryGirl.create(:checkpoint, goal: goal)
-        expect(goal.completed?).to eql(true)
-      end
-    end
-  end
-
   describe "#active_goals" do
-    context "there are goals with the end date in the future and
-    user has not hit the target" do
+    context "the end date is in the future" do
       it "returns true" do
         goal = FactoryGirl.create(:goal)
-        expect(goal.active_goal).to eql(true)
+        expect(Goal.active.first).to eql(goal)
       end
 
     end
-    context "there are goals in the past" do
-      it "returns false" do
-        goal = FactoryGirl.build(:goal, end_date: Date.yesterday)
+    context "the end date is in the past" do
+      it "does not return the goal" do
+        goal = FactoryGirl.build(:goal, completed_on: Date.yesterday)
         goal.save(validate: false)
-        expect(goal.active_goal).to eql(false)
+        expect(Goal.active.first).to eql(nil)
       end
     end
     context "user hit the target"
   end
 
+  describe "#completed" do
+    it "returns goals that have been completed" do
+      goal = FactoryGirl.create(:goal, completed_on: Date.today)
+      expect(Goal.completed.first).to eql(goal)
+    end
 
-  #   context 'it does not return inactive goals' do
-  #   goal2 = FactoryGirl.build(:goal, end_date: Date.yesterday )
-  #   goal3 = FactoryGirl.create(:goal)
-  #   checkpoint = FactoryGirl.create(:checkpoint, target: goal3.target_max)
-  #   goal2.save(validate: false)
-  # end
+    it "does not return goals that are not completed" do
+      FactoryGirl.create(:goal)
+      expect(Goal.completed.first).to eql(nil)
+    end
+  end
+
+  describe "#incomple" do
+    it "returns incomplete goals" do
+      FactoryGirl.create(:goal)
+      expect(Goal.incomplete.count).to eql(1)
+    end
+  end
+
 end
