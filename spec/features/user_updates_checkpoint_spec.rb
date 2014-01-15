@@ -9,7 +9,7 @@ require 'spec_helper'
     checkpoint = FactoryGirl.create(:checkpoint, goal: goal)
     sign_in_as(goal.user)
     click_on 'My Goals'
-    click_on 'Go to goal'
+    click_on 'squats'
     click_on 'Update Checkpoint'
     fill_in 'User input', with: goal.checkpoints.last.target
     click_on 'Update Checkpoint'
@@ -23,7 +23,7 @@ require 'spec_helper'
     checkpoint = FactoryGirl.create(:checkpoint, goal: goal)
     sign_in_as(goal.user)
     click_on 'My Goals'
-    click_on 'Go to goal'
+    click_on 'squats'
     click_on 'Update Checkpoint'
     fill_in 'User input', with: goal.target_max - 1
     click_on 'Update Checkpoint'
@@ -35,7 +35,7 @@ require 'spec_helper'
     checkpoint = FactoryGirl.create(:checkpoint, goal: goal)
     sign_in_as(goal.user)
     click_on 'My Goals'
-    click_on 'Go to goal'
+    click_on 'squats'
     10.times do
       click_on 'Update Checkpoint'
       fill_in 'User input', with: goal.checkpoints.last.target + 1
@@ -49,7 +49,7 @@ require 'spec_helper'
     checkpoint = FactoryGirl.create(:checkpoint, goal: goal)
     sign_in_as(goal.user)
     click_on 'My Goals'
-    click_on 'Go to goal'
+    click_on 'squats'
     click_on 'Update Checkpoint'
     fill_in 'User input', with: goal.target_max + 1
     click_on 'Update Checkpoint'
@@ -62,7 +62,7 @@ require 'spec_helper'
     goal.save(validate: false)
     sign_in_as(goal.user)
     click_on 'My Goals'
-    click_on "Go to goal"
+    click_on "squats"
     expect(page).to_not have_content('Update Checkpoint')
   end
 end
