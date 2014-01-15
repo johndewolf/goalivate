@@ -34,6 +34,9 @@ group :doc do
 end
 
 
+gem 'rails_12factor'
+
+
 
 group :test, :development do
   gem 'pry-rails'
