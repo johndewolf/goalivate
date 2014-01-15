@@ -8,7 +8,7 @@
   <div class="small-5 columns">
     <% if user_signed_in? %>
       <% if current_user.goals.active.any? %>
-          <h2>Your active Goals:</h2>
+            <h2>Your active Goals:</h2>
             <% current_user.goals.active.each do |goal| %>
             <p><%= "#{goal.target_max} #{goal.exercise.name} by #{goal.end_date.strftime("%B %d, %Y")}. " %>
             <%= link_to 'Get to it!', goal_path(goal) %></p>
