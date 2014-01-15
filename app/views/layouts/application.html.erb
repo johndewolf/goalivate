@@ -4,44 +4,12 @@
      <title><%= content_for?(:title) ? yield(:title) : "Goalivate" %></title>
     <%= stylesheet_link_tag    "application", media: "all" %>
     <%= csrf_meta_tags %>
-    <link rel="stylesheet" href="http://basehold.it/24">
+    <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
-    <body class="bg">
-      <div class="container">
-          <nav class="top-bar" data-topbar>
-            <ul class="title-area">
-              <li class="name">
-                <h1><a href="/">Goalivate</a></h1>
-              </li>
-              <li class="toggle-topbar"><a href="#">Menu</a></li>
-            </ul>
-
-            <section class="top-bar-section">
-              <% if user_signed_in? %>
-                <ul class="right">
-                  <li>
-                    <%= link_to 'Sign Out', destroy_user_session_path,
-                    method: :delete %>
-                  </li>
-                </ul>
-                <ul class="left">
-                  <li>
-                    <%= link_to 'My Goals', current_user %>
-                  </li>
-                </ul>
-              <% else %>
-                <ul class="right">
-                  <li>
-                    <%= link_to 'Sign Up', new_user_registration_path %>
-                  </li>
-                  <li>
-                    <%= link_to 'Sign In', new_user_session_path %>
-                  </li>
-                </ul>
-              <% end %>
-            </section>
-          </nav>
+    <body>
+        <div class="container">
+          <%= render "layouts/navigation" %>
         <div class="row">
           <div class="small-12 columns">
             <% if flash.any? %>
@@ -55,16 +23,16 @@
         </div>
         <div class="row">
           <div class="small-12 columns">
-            <%= yield %>
+            <div class="content-box">
+              <%= yield %>
+            </div>
           </div>
         </div>
-        <div class="footer">
-          <ul>
-            <li><%= link_to 'Contact Us', new_contact_inquiry_path %></li>
-            <li>|</li>
-            <li><%= link_to 'About this Site', '#' %></li>
-          </ul>
-      </div>
+        <div class="row">
+          <div class="small-12 columns">
+            <%= render 'layouts/footer' %>
+          </div>
+        </div>
       <%= javascript_include_tag "application" %>
     </body>
 </html>

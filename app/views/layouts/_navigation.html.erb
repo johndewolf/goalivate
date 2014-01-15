@@ -1,0 +1,35 @@
+<div class="contain-to-grid">
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="/">Goalivate</a></h1>
+      </li>
+      <li class="toggle-topbar"><a href="#">Menu</a></li>
+    </ul>
+
+    <section class="top-bar-section">
+      <% if user_signed_in? %>
+        <ul class="right">
+          <li>
+            <%= link_to 'Sign Out', destroy_user_session_path,
+            method: :delete %>
+          </li>
+        </ul>
+        <ul class="left">
+          <li>
+            <%= link_to 'My Goals', current_user %>
+          </li>
+        </ul>
+      <% else %>
+        <ul class="right">
+          <li>
+            <%= link_to 'Sign Up', new_user_registration_path %>
+          </li>
+          <li>
+            <%= link_to 'Sign In', new_user_session_path %>
+          </li>
+        </ul>
+      <% end %>
+    </section>
+  </nav>
+</div>
