@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'user sends email to JackFit', %Q{
+feature 'user sends email to Goalivate', %Q{
   As a site visitor
   I want to contact the site's staff
   So that I can ask questions or make comments about the site

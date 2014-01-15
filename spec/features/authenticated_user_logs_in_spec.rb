@@ -3,7 +3,7 @@ require 'spec_helper'
 feature 'user sign in', %Q{
   As an autheticated user
   I want to log in
-  So that I can use JackFit
+  So that I can use the service
 } do
   given(:user) { FactoryGirl.create(:user) }
 

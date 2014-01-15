@@ -3,7 +3,7 @@ require 'spec_helper'
 feature 'user sign up', %Q{
   As an unautheticated user
   I want to sign up
-  So that I can use JackFit
+  So that I can use the service
 } do
   scenario 'with valid and required attributes' do
     visit root_path

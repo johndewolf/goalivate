@@ -19,6 +19,6 @@ feature 'index page is dependent on if current user is logged in' do
     FactoryGirl.create(:goal, user: user)
     sign_in_as(user)
     visit root_path
-    expect(page).to have_content('Your current goals')
+    expect(page).to have_content('Your active goals')
   end
 end

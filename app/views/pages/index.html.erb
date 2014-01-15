@@ -1,6 +1,6 @@
 <div class ="index_container">
   <div class="small-7 columns">
-    <h2>Welcome to JackFit</h2>
+    <h2>Welcome to Goalivate</h2>
     <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
 
     <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
@@ -8,14 +8,14 @@
   <div class="small-5 columns">
     <% if user_signed_in? %>
       <% if current_user.goals.active.any? %>
-            <h2>Your active Goals:</h2>
+            <h2>Your active goals:</h2>
             <% current_user.goals.active.each do |goal| %>
             <p><%= "#{goal.target_max} #{goal.exercise.name} by #{goal.end_date.strftime("%B %d, %Y")}. " %>
             <%= link_to 'Get to it!', goal_path(goal) %></p>
             <% end %>
         <% else %>
           <h2>You have no goals!</h2>
-          <%= "How are you going to accomplish anything without goals?" %>
+          <p><%= "How are you going to accomplish anything without goals?" %>
           <%=link_to "Go create one now!", new_goal_path %></p>
         <% end %>
       <% else %>
