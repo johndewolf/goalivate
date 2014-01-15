@@ -8,15 +8,22 @@ class Checkpoint < ActiveRecord::Base
     inverse_of: :checkpoints
 
   def self.next_for(goal)
-    goal.delete_invalid_checkpoints
-    goal.checkpoints.create(
-      target: unit_increase(goal),
-      complete_by: calculate_complete_by(goal)
-    )
+    if goal.checkpoints.completed.any? &&
+      # goal.checkpoints.last.user_input != nil &&
+      goal.checkpoints.last.user_input >= goal.target_max
+      goal.completed_on = Date.today
+      goal.save
+    else
+      goal.delete_invalid_checkpoints
+      goal.checkpoints.create(
+        target: unit_increase(goal),
+        complete_by: calculate_complete_by(goal)
+      )
+    end
   end
 
   def self.completed
-    where("user_input IS NOT null")
+    where.not(user_input: nil)
   end
 
   # def days_remaining

@@ -11,7 +11,7 @@
         <td><%= @goal.end_date.strftime("%B %d, %Y") %></td>
       </tr>
 </table>
-<% if @goal.completed? == true %>
+<% if @goal.completed_on != nil %>
   <h3>Congrats!</h3>
   <p>You hit your goal now do some dancing</p>
 <% elsif @goal.end_date_has_passed? %>
@@ -42,8 +42,7 @@
             <td><%= checkpoint.user_input %></td>
           </tr>
         <% end %>
-
-        <tr align="center"><td COLSPAN=3><%= link_to 'Update Checkpoint', edit_goal_checkpoint_path(@goal, @goal.checkpoints.last) %></td></tr>
+          <tr align="center"><td COLSPAN=3><%= link_to 'Update Checkpoint', edit_goal_checkpoint_path(@goal, @goal.checkpoints.last) %></td></tr>
     </table>
 <% end %>
 

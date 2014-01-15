@@ -10,12 +10,10 @@ require 'spec_helper'
     scenario 'user views past and current goals in two tables' do
       user = FactoryGirl.create(:user)
       sign_in_as(user)
-      goal1 = FactoryGirl.create(:goal, user: user)
-      checkpoint1 = FactoryGirl.create(:checkpoint, goal: goal1)
-      goal2 = FactoryGirl.create(:goal, user: user)
-      FactoryGirl.create(:checkpoint, goal: goal2)
-      FactoryGirl.create(:checkpoint, goal: goal2, user_input: goal2.target_max)
-      FactoryGirl.create(:checkpoint, goal: goal2)
+      goal = FactoryGirl.create(:goal, user: user)
+      FactoryGirl.create(:checkpoint, goal: goal, user_input: goal.target_max)
+      Checkpoint.next_for(goal)
+
       visit "/users/#{user.id}"
       expect(page).to have_content('Active Goals')
       expect(page).to have_content('Past Goals')

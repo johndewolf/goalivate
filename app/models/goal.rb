@@ -18,21 +18,8 @@ class Goal < ActiveRecord::Base
     inverse_of: :goal,
     dependent: :destroy
 
-  # def create_first_checkpoint
-  #   weekly_increase = ((target_max - starting_max.to_f) / days_in_goal) * 7
-  #   Checkpoint.create(target: starting_max + weekly_increase, goal: self, complete_by: Date.today + 7)
-  # end
-
   def end_date_has_passed?
     Date.today > end_date
-  end
-
-  def completed?
-    if checkpoints.length > 1
-      checkpoints[-2].user_input >= target_max
-    else
-      false
-    end
   end
 
   def remaining_units
@@ -59,10 +46,26 @@ class Goal < ActiveRecord::Base
     ((end_date - created_at) / (60 * 60 * 24)).to_i
   end
 
-  def active_goal
-    completed? == false && end_date < Date.today
-    binding.pry
+  # def active_goal
+  #   completed? == false && end_date > Date.today
+  # end
+
+  def self.active
+    incomplete.where("end_date >= ?", Date.today)
   end
+
+  def self.past
+    where("end_date <= ? OR completed_on IS NOT null", Date.today)
+  end
+
+  def self.incomplete
+    where(completed_on: nil)
+  end
+
+  def self.completed
+    where("completed_on IS NOT null")
+  end
+
   private
 
   def goal_is_greater_than_start

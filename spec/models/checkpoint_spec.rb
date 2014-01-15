@@ -48,6 +48,15 @@ describe Checkpoint do
       checkpoint = Checkpoint.next_for(goal)
       expect((checkpoint.complete_by).to_date).to eql(Date.today + 7)
     end
+
+    context "checkpoint completes the goal" do
+      it "updates the goal 'completed_at'" do
+        goal = FactoryGirl.create(:goal)
+        FactoryGirl.create(:checkpoint, goal: goal, user_input: goal.target_max)
+        Checkpoint.next_for(goal)
+        expect(goal.completed_on).to eql(Date.today)
+      end
+    end
   end
 
 
@@ -72,5 +81,4 @@ describe Checkpoint do
       expect(checkpoint).to eql(10)
     end
   end
-
 end
