@@ -1,10 +1,9 @@
 <%= simple_form_for @goal do |f| %>
   <%= f.error_notification %>
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <%= f.input :starting_point, title: "How many can you do now?", data: { tooltip: true } %>
-  <%= f.input :target %>
-  <%= f.input :unit_of_measurement %>
+  <%= f.input :title, placeholder: 'Shoot more foul shots' %>
+  <%= f.input :starting_point, placeholder: "0" %>
+  <%= f.input :target, placeholder: '1000' %>
+  <%= f.input :unit_of_measurement, placeholder: 'shot' %>
   <%= f.input :end_date, label: 'Goal date', as: :date  %>
   <%= f.button :submit %>
 <% end %>
