@@ -11,7 +11,7 @@
       <tr>
         <td><%= link_to "#{goal.exercise.name}", goal_path(goal) %></td>
         <td><%= goal.starting_point %></td>
-        <td><%= goal.target_max%></td>
+        <td><%= goal.target%></td>
         <% if goal.completed_on != nil %>
           <td>yes</td>
         <% else %>

@@ -25,7 +25,7 @@ require 'spec_helper'
     click_on 'My Goals'
     click_on 'squats'
     click_on 'Update Checkpoint'
-    fill_in 'User input', with: goal.target_max - 1
+    fill_in 'User input', with: goal.target - 1
     click_on 'Update Checkpoint'
     expect(page).to have_content('Goal was successfully updated.')
   end
@@ -51,7 +51,7 @@ require 'spec_helper'
     click_on 'My Goals'
     click_on 'squats'
     click_on 'Update Checkpoint'
-    fill_in 'User input', with: goal.target_max + 1
+    fill_in 'User input', with: goal.target + 1
     click_on 'Update Checkpoint'
     goal.save
     expect(page).to_not have_content('Update Checkpoint')

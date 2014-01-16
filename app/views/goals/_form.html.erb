@@ -2,7 +2,7 @@
   <%= f.error_notification %>
   <%= f.association :exercise %>
   <%= f.input :starting_point, title: "How many can you do now?", data: { tooltip: true } %>
-  <%= f.input :target_max %>
+  <%= f.input :target %>
   <%= f.input :end_date, label: 'Goal date', as: :date  %>
   <%= f.button :submit %>
 <% end %>

@@ -38,7 +38,7 @@ describe Checkpoint do
 
     it "has the correct value for target" do
       goal = FactoryGirl.create(:goal,
-        end_date: Date.today + 2.weeks, starting_point: 0, target_max: 100)
+        end_date: Date.today + 2.weeks, starting_point: 0, target: 100)
       checkpoint = Checkpoint.next_for(goal)
       expect(checkpoint.target).to eq(50)
     end
@@ -52,7 +52,7 @@ describe Checkpoint do
     context "checkpoint completes the goal" do
       it "updates the goal 'completed_at'" do
         goal = FactoryGirl.create(:goal)
-        FactoryGirl.create(:checkpoint, goal: goal, user_input: goal.target_max)
+        FactoryGirl.create(:checkpoint, goal: goal, user_input: goal.target)
         Checkpoint.next_for(goal)
         expect(goal.completed_on).to eql(Date.today)
       end
@@ -76,7 +76,7 @@ describe Checkpoint do
   describe '.unit_increase' do
     it "increases the next checkpoint" do
       goal = FactoryGirl.create(:goal, end_date: Date.today + 2.weeks,
-        starting_point: 0, target_max: 20)
+        starting_point: 0, target: 20)
       checkpoint = Checkpoint.unit_increase(goal)
       expect(checkpoint).to eql(10)
     end

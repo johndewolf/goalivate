@@ -10,7 +10,7 @@ class Checkpoint < ActiveRecord::Base
   def self.next_for(goal)
     goal.delete_invalid_checkpoints
     if goal.checkpoints.completed.any? &&
-      goal.checkpoints.last.user_input >= goal.target_max
+      goal.checkpoints.last.user_input >= goal.target
       goal.completed_on = Date.today
       goal.save
     else
@@ -30,22 +30,22 @@ class Checkpoint < ActiveRecord::Base
   # end
 
   #   def rep_increase
-  #   increase = ((goal.target_max - goal.checkpoints.last.user_input) / checkpoints_remaining)
+  #   increase = ((goal.target - goal.checkpoints.last.user_input) / checkpoints_remaining)
   #   increase += 1 if increase == 0
   #   next_target = goal.checkpoints.last.user_input + increase
-  #   if next_target == goal.target_max - 1
-  #     goal.target_max
+  #   if next_target == goal.target - 1
+  #     goal.target
   #   else
   #     next_target
   #   end
   # end
 
   def self.unit_increase(goal)
-    increase = ((goal.target_max - last_input_or_starting_point(goal)) / checkpoints_remaining(goal))
+    increase = ((goal.target - last_input_or_starting_point(goal)) / checkpoints_remaining(goal))
     increase += 1 if increase == 0
     next_target = last_input_or_starting_point(goal) + increase
-    if next_target == goal.target_max - 1
-      goal.target_max
+    if next_target == goal.target - 1
+      goal.target
     else
       next_target
     end

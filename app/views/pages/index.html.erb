@@ -11,7 +11,7 @@
       <% if current_user.goals.active.any? %>
             <h2>Your active goals:</h2>
             <% current_user.goals.active.each do |goal| %>
-            <p><%= "#{goal.target_max} #{goal.exercise.name} by #{goal.end_date.strftime("%B %d, %Y")}. " %>
+            <p><%= "#{goal.target} #{goal.exercise.name} by #{goal.end_date.strftime("%B %d, %Y")}. " %>
             <%= link_to 'Get to it!', goal_path(goal) %></p>
             <% end %>
         <% else %>

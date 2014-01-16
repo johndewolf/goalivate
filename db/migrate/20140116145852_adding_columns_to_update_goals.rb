@@ -6,7 +6,7 @@ class AddingColumnsToUpdateGoals < ActiveRecord::Migration
     add_column :goals, :unit_of_measurement, :string, null: false
     remove_column :goals, :exercise_id
     rename_column :goals, :starting_max, :starting_point
-    rename_column :goals, :target_max, :target
+    rename_column :goals, :target, :target
   end
 
   def down
@@ -15,7 +15,7 @@ class AddingColumnsToUpdateGoals < ActiveRecord::Migration
     remove_column :goals, :unit_of_measurement
     add_column :goals, :exercise_id, :integer, null: false
     rename_column :goals, :starting_max, :starting_point
-    rename_column :goals, :target, :target_max
+    rename_column :goals, :target, :target
   end
 end
 
