@@ -17,7 +17,7 @@
             <th>Goal Date</th>
           </thead>
         </tr>
-          <% Goal.active.each do |goal| %>
+          <% @user.goals.active.each do |goal| %>
             <tr>
               <td><%= link_to "#{goal.exercise.name}", goal_path(goal) %></td>
               <td><%= goal.starting_max %></td>
@@ -35,7 +35,7 @@
         <% end %>
       </div>
     </div>
-    <% if Goal.past.any? %>
+    <% if @user.goals.past.any? %>
       <div class="row">
         <div class="small-12 columns">
           <h2>Past Goals</h2>
@@ -48,7 +48,7 @@
                 <th>Completed?</th>
               </thead>
             </tr>
-              <% Goal.past.each do |goal| %>
+              <% @user.goals.past.each do |goal| %>
                 <tr>
                   <td><%= link_to "#{goal.exercise.name}", goal_path(goal) %></td>
                   <td><%= goal.starting_max %></td>
