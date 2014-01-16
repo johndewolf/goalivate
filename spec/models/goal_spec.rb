@@ -1,26 +1,31 @@
 require 'spec_helper'
 
 describe Goal do
-  let(:goal) { FactoryGirl.create(:goal) }
-  it { should have_valid(:target_max).when(200) }
-  it { should_not have_valid(:target_max).when(nil) }
+  it { should have_valid(:target).when(200) }
+  it { should_not have_valid(:target).when(nil) }
 
-  it { should have_valid(:starting_max).when(100) }
-  it { should_not have_valid(:starting_max).when(nil, -1) }
+  it { should have_valid(:starting_point).when(100) }
+  it { should_not have_valid(:starting_point).when(nil, -1) }
 
   it { should have_valid(:end_date).when(Date.today + 8) }
   it { should_not have_valid(:end_date).when(nil) }
 
-  it { should have_valid(:exercise).when(FactoryGirl.create(:exercise)) }
-  it { should_not have_valid(:exercise).when(nil) }
+  it { should have_valid(:title).when('Free throws') }
+  it { should_not have_valid(:title).when('', nil) }
+
+  it { should have_valid(:description).when('I want to shoot 1000 free throws in a month') }
+
+  it { should have_valid(:unit_of_measurement).when('pushups', 'shots') }
+  it { should_not have_valid(:unit_of_measurement).when('', nil) }
 
   it { should belong_to(:user) }
 
   it { should have_many(:checkpoints) }
 
+  let(:goal) { FactoryGirl.create(:goal) }
 
   describe "#remaining_units" do
-    let(:goal) { FactoryGirl.create(:goal, target_max: 100) }
+    let(:goal) { FactoryGirl.create(:goal, target: 100) }
     context "no checkpoints have been completed" do
       it "returns the amount of remaining units" do
         expect(goal.remaining_units).to eq 100
@@ -55,7 +60,7 @@ describe Goal do
   describe ".delete invalid checkpoints" do
     context "there are extra checkpoints due to user hitting the back button in browser" do
       it 'returns the correct amount of checkpoints' do
-        goal = FactoryGirl.create(:goal, target_max: 30)
+        goal = FactoryGirl.create(:goal, target: 30)
         checkpoint1 = FactoryGirl.create(:checkpoint, goal: goal)
         checkpoint2 = FactoryGirl.create(:checkpoint, goal: goal, user_input: 12)
         goal.delete_invalid_checkpoints

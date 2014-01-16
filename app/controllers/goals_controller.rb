@@ -51,7 +51,7 @@ class GoalsController < ApplicationController
   private
 
   def goal_params
-    params.require(:goal).permit(:starting_max, :target_max,
+    params.require(:goal).permit(:starting_point, :target_max,
       :end_date, :exercise_id, :user)
   end
 end

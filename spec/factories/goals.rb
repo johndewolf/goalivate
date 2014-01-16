@@ -1,10 +1,10 @@
 FactoryGirl.define do
   factory :goal do
-    exercise
     user
-
-    starting_max '20'
-    target_max '50'
+    title 'freethrows'
+    unit_of_measurement 'shots'
+    starting_point '20'
+    target '50'
     end_date (Date.today + 30)
   end
 end

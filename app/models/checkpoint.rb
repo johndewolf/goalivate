@@ -41,9 +41,9 @@ class Checkpoint < ActiveRecord::Base
   # end
 
   def self.unit_increase(goal)
-    increase = ((goal.target_max - last_input_or_starting_max(goal)) / checkpoints_remaining(goal))
+    increase = ((goal.target_max - last_input_or_starting_point(goal)) / checkpoints_remaining(goal))
     increase += 1 if increase == 0
-    next_target = last_input_or_starting_max(goal) + increase
+    next_target = last_input_or_starting_point(goal) + increase
     if next_target == goal.target_max - 1
       goal.target_max
     else
@@ -51,7 +51,7 @@ class Checkpoint < ActiveRecord::Base
     end
   end
 
-  def self.last_input_or_starting_max(goal)
+  def self.last_input_or_starting_point(goal)
     if goal.checkpoints.completed.any?
       if goal.checkpoints.last.user_input != nil
         goal.checkpoints.last.user_input
@@ -59,7 +59,7 @@ class Checkpoint < ActiveRecord::Base
         where("user_input IS NOT null").last.user_input
       end
     else
-      goal.starting_max
+      goal.starting_point
     end
   end
 
