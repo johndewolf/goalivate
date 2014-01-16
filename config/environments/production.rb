@@ -77,4 +77,16 @@ BreakableToyTwo::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  config.action_mailer.default_url_options = { :host => 'http://goalivate.herokuapp.com/' }
+ActionMailer::Base.smtp_settings = {
+  :user_name => 'app21279338@heroku.com',
+  :password => 'msfy6k8l',
+  :domain => 'http://goalivate.herokuapp.com/',
+  :address => 'smtp.sendgrid.net',
+  :port => 587,
+  :authentication => :plain,
+  :enable_starttls_auto => true
+}
+
 end
