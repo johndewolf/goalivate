@@ -2,14 +2,14 @@
 <table class="responsive">
   <tr>
     <thead>
-      <th>Exercise</th>
+      <th>Title</th>
       <th>Starting Reps</th>
       <th>Goal Reps</th>
       <th>Goal Date</th>
     </thead>
   </tr>
         <tr>
-          <td><%= @goal.exercise.name.capitalize %></td>
+          <td><%= @goal.title %></td>
           <td><%= @goal.starting_point %></td>
           <td><%= @goal.target %></td>
           <td><%= @goal.end_date.strftime("%B %d, %Y") %></td>

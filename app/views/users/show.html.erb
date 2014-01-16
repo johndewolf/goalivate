@@ -21,7 +21,7 @@
       <table>
         <tr>
           <thead>
-            <th>Exercise</th>
+            <th>Title</th>
             <th>Starting Max</th>
             <th>Target Max</th>
             <th>Goal Date</th>
@@ -29,7 +29,7 @@
         </tr>
           <% @user.goals.active.each do |goal| %>
             <tr>
-              <td><%= link_to "#{goal.exercise.name}", goal_path(goal) %></td>
+              <td><%= link_to "#{goal.title}", goal_path(goal) %></td>
               <td><%= goal.starting_point %></td>
               <td><%= goal.target%></td>
               <td><%= goal.end_date.strftime("%B %d, %Y") %></td>

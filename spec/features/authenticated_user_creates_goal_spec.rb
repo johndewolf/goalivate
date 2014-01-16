@@ -6,14 +6,14 @@ feature 'user creates a goal', %Q{
   So that I can track my progress
 } do
   let(:user) { FactoryGirl.create(:user) }
-  let!(:exerise) { FactoryGirl.create(:exercise) }
 
   scenario 'user enters in valid input and saves' do
     sign_in_as(user)
     click_on 'Create a Goal'
-    select 'squats', from: 'Exercise'
-    fill_in 'Starting max', with: 200
-    fill_in 'Target max', with: 210
+    fill_in 'Title', with: 'pushups'
+    fill_in 'Starting point', with: 50
+    fill_in 'Unit of measurement', with: 'pushup'
+    fill_in 'Target', with: 100
     select Date.today.year + 1, from: 'Goal date'
     click_on 'Create Goal'
     expect(page).to have_content('Goal successfully created')
@@ -22,9 +22,9 @@ feature 'user creates a goal', %Q{
   scenario 'user enters in goal weight lower than starting strength' do
     sign_in_as(user)
     click_on 'Create a Goal'
-    select 'squats', from: 'Exercise'
-    fill_in 'Starting max', with: 220
-    fill_in 'Target max', with: 210
+    fill_in 'Starting point', with: 50
+    fill_in 'Unit of measurement', with: 'pushup'
+    fill_in 'Target', with: 40
     select Date.today.year + 1, from: 'Goal date'
     click_on 'Create Goal'
     expect(page).to have_content('Goal max must be greater than starting')
@@ -33,9 +33,9 @@ feature 'user creates a goal', %Q{
   scenario 'user enters goal date in the past or less than one week' do
     sign_in_as(user)
     click_on 'Create a Goal'
-    select 'squats', from: 'Exercise'
-    fill_in 'Starting max', with: 22
-    fill_in 'Target max', with: 25
+    fill_in 'Starting point', with: 50
+    fill_in 'Unit of measurement', with: 'pushup'
+    fill_in 'Target', with: 40
     click_on 'Create Goal'
     expect(page).to have_content('must be 7 days in the future')
   end
