@@ -33,7 +33,7 @@ class GoalsController < ApplicationController
   end
 
   def update
-    @goal = Goal.find(params[:id])
+    @goal = current_user.goals.find(params[:id])
       if @goal.update(goal_params)
         redirect_to @goal, notice: 'Goal was successfully updated.'
       else
@@ -42,7 +42,7 @@ class GoalsController < ApplicationController
   end
 
   def destroy
-    @goal = Goal.find(params[:id])
+    @goal = current_user.goals.find(params[:id])
     if @goal.destroy
       redirect_to user_path(current_user), notice: 'Goal was deleted'
     end

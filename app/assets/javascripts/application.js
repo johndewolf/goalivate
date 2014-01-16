@@ -18,5 +18,5 @@
 
 $(function(){
   $(document).foundation();
-    setTimeout(function(){ $('.alert-box').fadeOut() }, 2500);
+    setTimeout(function(){ $('.alert-box').fadeOut() }, 5000);
 });

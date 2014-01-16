@@ -1,9 +1,19 @@
+<% if @user = current_user %>
+  <h1>Your goals</h1>
+<% else %>
 <h1><%= @user.first_name %>'s goals</h1>
+<% end %>
 <% if @user.goals.empty? && @user != current_user %>
   <h2>User has no goals</h2>
-<% elsif @user.goals.empty? && @user == current_user %>
+<% elsif @user.goals.active.empty? && @user == current_user %>
   <h2>You have no goals! Create one: </h2>
   <%= link_to "Create a Goal", new_goal_path, :method => "get" %>
+    <div class="row">
+      <div class="small-12 columns">
+        <h2>Past Goals</h2>
+        <%= render 'past_goals_table' %>
+      </div>
+    </div>
 <% else %>
   <div class="row">
     <div class="small-12 columns">
@@ -39,30 +49,10 @@
       <div class="row">
         <div class="small-12 columns">
           <h2>Past Goals</h2>
-          <table class="responsive">
-            <tr>
-              <thead>
-                <th>Exercise</th>
-                <th>Starting Max</th>
-                <th>Target Max</th>
-                <th>Completed?</th>
-              </thead>
-            </tr>
-              <% @user.goals.past.each do |goal| %>
-                <tr>
-                  <td><%= link_to "#{goal.exercise.name}", goal_path(goal) %></td>
-                  <td><%= goal.starting_max %></td>
-                  <td><%= goal.target_max%></td>
-                  <% if goal.completed_on != nil %>
-                    <td>yes</td>
-                  <% else %>
-                    <td>no</td>
-                  <% end %>
-                </tr>
-              <% end %>
-              <% end %>
-            </table>
+            <%= render 'past_goals_table' %>
+        </div>
       </div>
+    <% end %>
     <% end %>
 </div>
 

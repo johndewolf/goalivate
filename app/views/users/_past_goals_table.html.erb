@@ -1,0 +1,22 @@
+<table class="responsive">
+  <tr>
+    <thead>
+      <th>Exercise</th>
+      <th>Starting Max</th>
+      <th>Target Max</th>
+      <th>Completed?</th>
+    </thead>
+  </tr>
+    <% @user.goals.past.each do |goal| %>
+      <tr>
+        <td><%= link_to "#{goal.exercise.name}", goal_path(goal) %></td>
+        <td><%= goal.starting_max %></td>
+        <td><%= goal.target_max%></td>
+        <% if goal.completed_on != nil %>
+          <td>yes</td>
+        <% else %>
+          <td>no</td>
+        <% end %>
+      </tr>
+    <% end %>
+</table>
