@@ -1,19 +1,19 @@
-<h2>Goal:</h2>
+<h1><%= @goal.title %></h1>
 <table class="responsive">
   <tr>
     <thead>
       <th>Title</th>
-      <th>Starting Reps</th>
-      <th>Goal Reps</th>
+      <th>Starting Point</th>
+      <th>Target</th>
       <th>Goal Date</th>
     </thead>
   </tr>
-        <tr>
-          <td><%= @goal.title %></td>
-          <td><%= @goal.starting_point %></td>
-          <td><%= @goal.target %></td>
-          <td><%= @goal.end_date.strftime("%B %d, %Y") %></td>
-        </tr>
+  <tr>
+    <td><%= @goal.title %></td>
+    <td><%= pluralize(@goal.starting_point, @goal.unit_of_measurement) %></td>
+    <td><%= pluralize(@goal.target, @goal.unit_of_measurement) %></td>
+    <td><%= @goal.end_date.strftime("%B %d, %Y") %></td>
+  </tr>
 </table>
 <% if @goal.completed_on != nil %>
   <h3>Congrats!</h3>

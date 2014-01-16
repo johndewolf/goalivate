@@ -1,5 +1,7 @@
 class Goal < ActiveRecord::Base
   # after_create :create_first_checkpoint
+  before_validation :singularize_measurement_unit
+
   validates :starting_point, numericality: { greater_than_or_equal_to: 0 }
   validates_presence_of :target
   validates_presence_of :end_date
@@ -76,6 +78,10 @@ class Goal < ActiveRecord::Base
     unless end_date > Date.today + 7
       errors[:end_date] << "must be 7 days in the future"
     end
+  end
+
+  def singularize_measurement_unit
+    unit_of_measurement.singularize
   end
 
   # def weeks_in_goal

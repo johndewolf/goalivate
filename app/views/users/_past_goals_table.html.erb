@@ -1,15 +1,15 @@
 <table class="responsive">
   <tr>
     <thead>
-      <th>Exercise</th>
-      <th>Starting Max</th>
-      <th>Target Max</th>
+      <th>Title</th>
+      <th>Starting Point</th>
+      <th>Target</th>
       <th>Completed?</th>
     </thead>
   </tr>
     <% @user.goals.past.each do |goal| %>
       <tr>
-        <td><%= link_to "#{goal.exercise.name}", goal_path(goal) %></td>
+        <td><%= link_to "#{goal.title}", goal_path(goal) %></td>
         <td><%= goal.starting_point %></td>
         <td><%= goal.target%></td>
         <% if goal.completed_on != nil %>
