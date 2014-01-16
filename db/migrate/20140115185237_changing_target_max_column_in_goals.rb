@@ -1,6 +1,6 @@
 class ChangingTargetMaxColumnInGoals < ActiveRecord::Migration
   def up
-    rename_column :goals, :goal_max, :target
+    rename_column :goals, :goal_max, :target_max
   end
 
   def down
