@@ -35,9 +35,9 @@
 // $total-columns: 12;
 
 // We use these to control various global styles
-$body-bg: url('brickwall.png');
+$body-bg: assets-url('brickwall.png');
 // $body-font-color: #222;
-// $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-family: "Sintony", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: normal;
 // $body-font-style: normal;
 
@@ -949,7 +949,7 @@ $body-bg: url('brickwall.png');
 // $topbar-dropdown-toggle-alpha: 0.4;
 
 // Set the link colors and styles for top-level nav
-// $topbar-link-color: #fff;
+// $topbar-link-color: #c4190f;
 // $topbar-link-color-hover: #fff;
 // $topbar-link-color-active: #fff;
 // $topbar-link-weight: normal;
@@ -966,7 +966,7 @@ $body-bg: url('brickwall.png');
 // $topbar-dropdown-label-text-transform: uppercase;
 // $topbar-dropdown-label-font-weight: bold;
 // $topbar-dropdown-label-font-size: rem-calc(10);
-// $topbar-dropdown-label-bg: #333;
+// $topbar-dropdown-label-bg: #c4190f;
 
 // Top menu icon styles
 // $topbar-menu-link-transform: uppercase;
