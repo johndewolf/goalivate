@@ -6,7 +6,7 @@ BreakableToyTwo::Application.initialize!
 
 ActionMailer::Base.smtp_settings = {
   :user_name => 'app21279338@heroku.com',
-  :password => '',
+  :password => 'msfy6k8l',
   :domain => 'http://goalivate.herokuapp.com/',
   :address => 'smtp.sendgrid.net',
   :port => 587,
