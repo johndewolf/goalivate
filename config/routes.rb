@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 BreakableToyTwo::Application.routes.draw do
 devise_for :users, :path => '', :path_names => {:sign_in => 'sign_in', :sign_out => 'sign_out'}
 resources :users, only: :show
@@ -10,7 +12,7 @@ resources :goals, only: [] do
   resources :checkpoints
 end
 
-
+mount Sidekiq::Web, at: '/sidekiq'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

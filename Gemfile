@@ -20,6 +20,9 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
 gem 'simple_form'
 gem 'foundation-rails'
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
