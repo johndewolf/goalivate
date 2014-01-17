@@ -23,6 +23,7 @@ gem 'foundation-rails'
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
+gem 'sidetiq'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -52,6 +53,7 @@ group :test, :development do
   gem 'launchy'
   gem 'email_spec'
   gem 'dotenv-rails'
+  gem 'timecop'
 end
 
 group :development do

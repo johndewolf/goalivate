@@ -46,10 +46,6 @@ class Goal < ActiveRecord::Base
     ((end_date - created_at) / (60 * 60 * 24)).to_i
   end
 
-  # def active_goal
-  #   completed? == false && end_date > Date.today
-  # end
-
   def self.active
     incomplete.where("end_date >= ?", Date.today)
   end
