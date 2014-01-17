@@ -15,8 +15,7 @@ feature 'user sends email to Goalivate', %Q{
   scenario 'user sends email' do
     ActionMailer::Base.deliveries = []
     prev_count = ContactInquiry.count
-    visit root_path
-    click_on 'Contact Us'
+    visit 'contact_inquiries/new'
     fill_in 'Email', with: 'jdewolf06@gmail.com'
     fill_in 'Subject', with: 'test'
     fill_in 'Content', with: 'testing the test'

@@ -1,14 +1,7 @@
 <div class="row">
-  <div class="small-12 small-right medium-7 columns">
-    <h2>Welcome to Goalivate</h2>
-    <p>This site is here to help you get into better shape. How you ask? It's simple, first you sign up then we show up at your house and
-    steal your T.V. While you're chasing around the neighborehood you'll burn more carbs then you ever burned at the gym. Just kidding... unless you actually want us to do that.</p>
-    <h2>How it Works</h2>
-    <p>Goalivate focuses on body weight fitness. You can do these exercises any time, any where, so you have no excuse for not sticking with it. To create a goal, you select an exercise, how many repititions you can currently do at once and how many you'd like to be able to do. Then you select when you want to accomplish this goal by. Goalivate sets weekly checkpoints to hit, breaking your goal down into smaller chunks and guiding you on the way to achieving your goal.</p>
-  </div>
-  <div class="small-12 small-left medium-5 columns">
-    <% if user_signed_in? %>
-      <% if current_user.goals.active.any? %>
+  <% if user_signed_in? %>
+    <div class="small-12 columns">
+    <% if current_user.goals.active.any? %>
             <h2>Your active goals:</h2>
             <% current_user.goals.active.each do |goal| %>
             <p><%= "#{pluralize("%g" % ("%.2f" % goal.target), goal.unit_of_measurement)} by #{goal.end_date.strftime("%B %d, %Y")}. " %>
@@ -19,12 +12,21 @@
           <p><%= "How are you going to accomplish anything without goals?" %>
           <%=link_to "Go create one now!", new_goal_path %></p>
         <% end %>
-      <% else %>
+    <% else %>
+        <div class="small-12 small-left medium-7 columns">
+          <h2>Welcome to Goalivate</h2>
+          <p>This site is here to help you get into better shape. How you ask? It's simple, first you sign up then we show up at your house and
+          steal your T.V. While you're chasing around the neighborehood you'll burn more carbs then you ever burned at the gym. Just kidding... unless you actually want us to do that.</p>
+          <h2>How it Works</h2>
+          <p>Goalivate focuses on body weight fitness. You can do these exercises any time, any where, so you have no excuse for not sticking with it. To create a goal, you select an exercise, how many repititions you can currently do at once and how many you'd like to be able to do. Then you select when you want to accomplish this goal by. Goalivate sets weekly checkpoints to hit, breaking your goal down into smaller chunks and guiding you on the way to achieving your goal.</p>
+        </div>
+      <div class="small-12 small-right medium-5 columns">
       <div class="sign_in_box">
         <div class="header_for_signin">
           <h2>Sign Up Now!</h2>
         </div>
         <%= render 'devise/registrations/sign_up' %>
+      </div>
       </div>
     <% end %>
   </div>

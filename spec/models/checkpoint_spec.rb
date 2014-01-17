@@ -78,7 +78,7 @@ describe Checkpoint do
       goal = FactoryGirl.create(:goal, end_date: Date.today + 2.weeks,
         starting_point: 0, target: 20)
       checkpoint = Checkpoint.unit_increase(goal)
-      expect(checkpoint).to eql(10)
+      expect(checkpoint).to eql(10.0)
     end
   end
 end

@@ -9,7 +9,7 @@ feature 'user creates a goal', %Q{
 
   scenario 'user enters in valid input and saves' do
     sign_in_as(user)
-    click_on 'Create a Goal'
+    click_on 'You have no goals! Create one!'
     fill_in 'Title', with: 'pushups'
     fill_in 'Starting point', with: 50
     fill_in 'Unit of measurement', with: 'pushup'
@@ -21,7 +21,7 @@ feature 'user creates a goal', %Q{
 
   scenario 'user enters in goal weight lower than starting strength' do
     sign_in_as(user)
-    click_on 'Create a Goal'
+    click_on 'You have no goals! Create one!'
     fill_in 'Starting point', with: 50
     fill_in 'Unit of measurement', with: 'pushup'
     fill_in 'Target', with: 40
@@ -32,7 +32,7 @@ feature 'user creates a goal', %Q{
 
   scenario 'user enters goal date in the past or less than one week' do
     sign_in_as(user)
-    click_on 'Create a Goal'
+    click_on 'You have no goals! Create one!'
     fill_in 'Starting point', with: 50
     fill_in 'Unit of measurement', with: 'pushup'
     fill_in 'Target', with: 40

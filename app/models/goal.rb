@@ -1,6 +1,6 @@
 class Goal < ActiveRecord::Base
   # after_create :create_first_checkpoint
-  before_validation :singularize_measurement_unit
+  before_save :singularize_measurement_unit
 
   validates :starting_point, numericality: { greater_than_or_equal_to: 0 }
   validates_presence_of :target

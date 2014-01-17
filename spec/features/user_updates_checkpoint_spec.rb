@@ -41,7 +41,7 @@ require 'spec_helper'
       fill_in 'User input', with: goal.checkpoints.last.target + 1
       click_on 'Update Checkpoint'
     end
-    expect(page).to have_content(goal.checkpoints.last.target)
+    expect(page).to have_content(goal.checkpoints.last.target.ceil)
     end
 
   scenario 'user hit goal target' do
