@@ -59,7 +59,7 @@
     </table>
 <% end %>
 
-<% if @goal.completed_on == nil %>
+<% if @goal.user == current_user && @goal.completed_on == nil %>
   <%= link_to 'Edit', edit_goal_path(@goal) %> |
   <%= link_to 'Delete Goal', goal_path(@goal), method: :delete %> |
 <% end %>

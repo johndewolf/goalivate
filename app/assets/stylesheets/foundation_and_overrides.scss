@@ -35,7 +35,7 @@
 // $total-columns: 12;
 
 // We use these to control various global styles
-$body-bg: url('brickwall.png');
+$body-bg: image-url('brickwall.png');
 // $body-font-color: #222;
 $body-font-family: "Sintony", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: normal;
@@ -50,10 +50,10 @@ $body-font-family: "Sintony", "Helvetica", Helvetica, Arial, sans-serif;
 // $default-float: left;
 
 // We use these as default colors throughout
-// $primary-color: #008CBA;
-// $secondary-color: #e7e7e7;
-// $alert-color: #f04124;
-// $success-color: #43AC6A;
+$primary-color: #D13838;
+$secondary-color: #7B9B66;
+$alert-color: #2ECC71;
+$success-color: #43AC6A;
 
 // We use these to make sure border radius matches unless we want it different.
 // $global-radius: 3px;
@@ -927,7 +927,7 @@ $body-font-family: "Sintony", "Helvetica", Helvetica, Arial, sans-serif;
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-// $topbar-bg-color: #333;
+$topbar-bg-color: #7B9B66;
 // $topbar-bg: $topbar-bg-color;
 
 // Height and margin
