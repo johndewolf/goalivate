@@ -10,8 +10,8 @@
   </tr>
   <tr>
     <td><%= @goal.title %></td>
-    <td><%= pluralize(@goal.starting_point, @goal.unit_of_measurement) %></td>
-    <td><%= pluralize(@goal.target, @goal.unit_of_measurement) %></td>
+    <td><%= pluralize("%g" % ("%.2f" % @goal.starting_point), @goal.unit_of_measurement) %></td>
+    <td><%= pluralize("%g" % ("%.2f" % @goal.target), @goal.unit_of_measurement) %></td>
     <td><%= @goal.end_date.strftime("%B %d, %Y") %></td>
   </tr>
 </table>
@@ -33,8 +33,8 @@
         <% @goal.checkpoints.each do |checkpoint| %>
           <tr>
             <td><%= checkpoint.complete_by.strftime("%B %d, %Y") %></td>
-            <td><%= checkpoint.target %></td>
-            <td><%= checkpoint.user_input %></td>
+            <td><%= "%g" % ("%.2f" % checkpoint.target) %></td>
+            <td><%= "%g" % ("%.2f" % checkpoint.user_input) %></td>
           </tr>
         <% end %>
     </table>
@@ -51,8 +51,10 @@
         <% @goal.checkpoints.each do |checkpoint| %>
           <tr>
             <td><%= checkpoint.complete_by.strftime("%B %d, %Y") %></td>
-            <td><%= checkpoint.target %></td>
-            <td><%= checkpoint.user_input %></td>
+            <td><%= "%g" % ("%.2f" % checkpoint.target) %></td>
+            <% unless checkpoint == @goal.checkpoints.last %>
+              <td><%= "%g" % ("%.2f" % checkpoint.user_input) %></td>
+            <% end %>
           </tr>
         <% end %>
           <tr align="center"><td COLSPAN=3><%= link_to 'Update Checkpoint', edit_goal_checkpoint_path(@goal, @goal.checkpoints.last) %></td></tr>

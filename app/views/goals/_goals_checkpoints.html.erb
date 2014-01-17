@@ -9,8 +9,8 @@
     <% @goal.checkpoints.each do |checkpoint| %>
       <tr>
         <td><%= checkpoint.updated_at.strftime("%B %d, %Y") %></td>
-        <td><%= checkpoint.target %></td>
-        <td><%= checkpoint.user_input %></td>
+        <td><%= "%g" % ("%.2f" % checkpoint.target) %></td>
+        <td><%= "%g" % ("%.2f" % checkpoint.user_input) %></td>
       </tr>
     <% end %>
 </table>

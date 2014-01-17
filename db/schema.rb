@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140116145852) do
+ActiveRecord::Schema.define(version: 20140117004043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "checkpoints", force: true do |t|
-    t.integer  "target",      null: false
-    t.integer  "user_input"
+    t.float    "target",      null: false
+    t.float    "user_input"
     t.integer  "goal_id",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 20140116145852) do
   end
 
   create_table "goals", force: true do |t|
-    t.integer  "starting_point",      null: false
-    t.integer  "target",              null: false
+    t.float    "starting_point",      null: false
+    t.float    "target",              null: false
     t.datetime "end_date",            null: false
     t.integer  "user_id",             null: false
     t.datetime "created_at"

@@ -41,7 +41,7 @@ class Checkpoint < ActiveRecord::Base
   # end
 
   def self.unit_increase(goal)
-    increase = ((goal.target - last_input_or_starting_point(goal)) / checkpoints_remaining(goal))
+    increase = ((goal.target.to_f - last_input_or_starting_point(goal)) / checkpoints_remaining(goal))
     increase += 1 if increase == 0
     next_target = last_input_or_starting_point(goal) + increase
     if next_target == goal.target - 1

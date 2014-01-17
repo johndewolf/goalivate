@@ -29,8 +29,8 @@
           <% @user.goals.active.each do |goal| %>
             <tr>
               <td><%= link_to "#{goal.title}", goal_path(goal) %></td>
-              <td><%= goal.starting_point %></td>
-              <td><%= goal.target%></td>
+              <td><%= "%g" % ("%.2f" % goal.starting_point) %></td>
+              <td><%= "%g" % ("%.2f" % goal.target) %></td>
               <td><%= goal.end_date.strftime("%B %d, %Y") %></td>
             </tr>
           <% end %>
