@@ -1,22 +1,26 @@
-<h1><%= @goal.title %></h1>
-<table>
-  <tr>
-    <thead>
-      <th>Title</th>
-      <th>Starting Point</th>
-      <th>Target</th>
-      <th>Goal Date</th>
-    </thead>
-  </tr>
-  <tr>
-    <td><%= @goal.title %></td>
-    <td><%= pluralize("%g" % ("%.2f" % @goal.starting_point),
-            @goal.unit_of_measurement) %></td>
-    <td><%= pluralize("%g" % ("%.2f" % @goal.target),
-            @goal.unit_of_measurement) %></td>
-    <td><%= @goal.end_date.strftime("%B %d, %Y") %></td>
-  </tr>
-</table>
+<div class="row">
+  <div class="small-12 columns">
+    <h1><%= @goal.title %></h1>
+    <table>
+      <tr>
+        <thead>
+          <th>Title</th>
+          <th>Starting Point</th>
+          <th>Target</th>
+          <th>Goal Date</th>
+        </thead>
+      </tr>
+      <tr>
+        <td><%= @goal.title %></td>
+        <td><%= pluralize("%g" % ("%.2f" % @goal.starting_point),
+                @goal.unit_of_measurement) %></td>
+        <td><%= pluralize("%g" % ("%.2f" % @goal.target),
+                @goal.unit_of_measurement) %></td>
+        <td><%= @goal.end_date.strftime("%B %d, %Y") %></td>
+      </tr>
+    </table>
+  </div>
+</div>
 <% if @goal.completed_on != nil %>
   <h3>Congrats!</h3>
   <p>You hit your goal now do some dancing</p>
@@ -41,29 +45,33 @@
         <% end %>
     </table>
 <% else %>
-  <h3>Checkpoints:</h3>
-    <table>
-      <tr>
-        <thead>
-          <th>Complete By:</th>
-          <th>Target</th>
-          <th>User input</th>
-        </thead>
-      </tr>
-        <% @goal.checkpoints.each do |checkpoint| %>
+  <div class="row">
+   <div class="small-12 columns">
+      <h3>Checkpoints:</h3>
+        <table>
           <tr>
-            <td><%= checkpoint.complete_by.strftime("%B %d, %Y") %></td>
-            <td><%= "%g" % ("%.2f" % checkpoint.target) %></td>
-            <% unless checkpoint == @goal.checkpoints.last %>
-              <td><%= "%g" % ("%.2f" % checkpoint.user_input) %></td>
-            <% end %>
+            <thead>
+              <th>Complete By:</th>
+              <th>Target</th>
+              <th>User input</th>
+            </thead>
           </tr>
-        <% end %>
-          <tr align="center"><td COLSPAN=3><%= link_to 'Update Checkpoint',
-          edit_goal_checkpoint_path(@goal, @goal.checkpoints.last) %></td></tr>
-    </table>
+            <% @goal.checkpoints.each do |checkpoint| %>
+              <tr>
+                <td><%= checkpoint.complete_by.strftime("%B %d, %Y") %></td>
+                <td><%= "%g" % ("%.2f" % checkpoint.target) %></td>
+                <% unless checkpoint == @goal.checkpoints.last %>
+                  <td><%= "%g" % ("%.2f" % checkpoint.user_input) %></td>
+                <% end %>
+              </tr>
+            <% end %>
+              <tr align="center"><td COLSPAN=3><%= link_to 'Update Checkpoint',
+              edit_goal_checkpoint_path(@goal, @goal.checkpoints.last) %></td></tr>
+         </table>
+    </div>
+  </div>
 <% end %>
-<div class="row">
+<div id="checkpoints-graph">
   <%= jqplot 400, "100%", [@goal.checkpoints.map{|t| t.user_input},
                             @goal.checkpoints.map{|t| t.target}],
             axes: {
@@ -73,11 +81,11 @@
               shadow: false
               } %>
 </div>
-<div class="row">
+
 <p></p>
 <% if @goal.user == current_user && @goal.completed_on == nil %>
   <%= link_to 'Edit', edit_goal_path(@goal) %> |
   <%= link_to 'Delete Goal', goal_path(@goal), method: :delete %> |
 <% end %>
 <%= link_to 'Back To User', user_path(@user) %>
-</div>
+
