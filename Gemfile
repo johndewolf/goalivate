@@ -4,7 +4,6 @@ ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
-gem 'chartkick'
 gem "font-awesome-rails"
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -24,6 +23,7 @@ gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
 gem 'sidetiq'
+gem 'jqplot-rails'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -56,9 +56,11 @@ group :test, :development do
   gem 'timecop'
 end
 
+
 group :development do
   gem 'mailcatcher'
 end
+
 
 group :test do
   gem 'coveralls', require: false

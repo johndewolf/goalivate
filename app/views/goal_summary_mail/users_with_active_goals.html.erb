@@ -1,8 +1,0 @@
-<h1><%= "Hello #{@user.first_name}" %></h1>
-
-<p><%= "Here are your upcoming checkpoints for this week" %></p>
-<% @user.goals.active.each do |goal| %>
-    <%= "#{pluralize("%g" % ("%.2f" % goal.checkpoints.last.target),
-    goal.unit_of_measurement)} by
-    #{goal.checkpoints.last.end_date.strftime("%B %d, %Y")}" %>
-<% end %>

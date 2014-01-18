@@ -10,8 +10,9 @@
  *
  *= require_self
  *= require foundation_and_overrides
-*= require font-awesome
+ *= require font-awesome
  *= require_tree .
+ *= require jqplot
  */
 @import url('http://fonts.googleapis.com/css?family=Sintony');
 @import url('http://fonts.googleapis.com/css?family=Aladin');

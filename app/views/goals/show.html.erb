@@ -1,5 +1,5 @@
 <h1><%= @goal.title %></h1>
-<table class="responsive">
+<table>
   <tr>
     <thead>
       <th>Title</th>
@@ -10,8 +10,10 @@
   </tr>
   <tr>
     <td><%= @goal.title %></td>
-    <td><%= pluralize("%g" % ("%.2f" % @goal.starting_point), @goal.unit_of_measurement) %></td>
-    <td><%= pluralize("%g" % ("%.2f" % @goal.target), @goal.unit_of_measurement) %></td>
+    <td><%= pluralize("%g" % ("%.2f" % @goal.starting_point),
+            @goal.unit_of_measurement) %></td>
+    <td><%= pluralize("%g" % ("%.2f" % @goal.target),
+            @goal.unit_of_measurement) %></td>
     <td><%= @goal.end_date.strftime("%B %d, %Y") %></td>
   </tr>
 </table>
@@ -57,9 +59,22 @@
             <% end %>
           </tr>
         <% end %>
-          <tr align="center"><td COLSPAN=3><%= link_to 'Update Checkpoint', edit_goal_checkpoint_path(@goal, @goal.checkpoints.last) %></td></tr>
+          <tr align="center"><td COLSPAN=3><%= link_to 'Update Checkpoint',
+          edit_goal_checkpoint_path(@goal, @goal.checkpoints.last) %></td></tr>
     </table>
 <% end %>
+<% i = 1 %>
+<div id="resizeable1">
+<%= jqplot 400, "100%", [@goal.checkpoints.map{|t| t.user_input},
+                          @goal.checkpoints.map{|t| t.target}],
+          axes: {
+            xaxis: {min: 0, max: @goal.checkpoints.count}, label: 'test'
+            },
+          grid: {
+            shadow: false
+            } %>
+</div>
+
 
 <% if @goal.user == current_user && @goal.completed_on == nil %>
   <%= link_to 'Edit', edit_goal_path(@goal) %> |

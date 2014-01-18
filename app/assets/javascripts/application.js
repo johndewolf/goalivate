@@ -13,10 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require jqplot
 //= require_tree .
 //= require_self
 
 $(function(){
   $(document).foundation();
     setTimeout(function(){ $('.alert-box').fadeOut() }, 5000);
+  $('#resizable1').bind('resize', function(event, ui) {
+        plot1.replot( { resetAxes: true } );
+    });
 });

@@ -9,17 +9,16 @@ class Checkpoint < ActiveRecord::Base
 
   def self.next_for(goal)
     goal.delete_invalid_checkpoints
-      if goal.checkpoints.last.user_input != nil
-        if goal.checkpoints.last.user_input >= goal.target
-          goal.completed_on = Date.today
-          goal.save
-        else
-          goal.checkpoints.create(
-            target: unit_increase(goal),
-            complete_by: calculate_complete_by(goal)
-          )
-        end
-      end
+    if goal.checkpoints.completed.any? &&
+      goal.checkpoints.last.user_input >= goal.target
+      goal.completed_on = Date.today
+      goal.save
+    else
+      goal.checkpoints.create(
+        target: unit_increase(goal),
+        complete_by: calculate_complete_by(goal)
+      )
+    end
   end
 
   def self.completed
