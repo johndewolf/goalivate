@@ -24,6 +24,7 @@ gem 'sinatra', require: false
 gem 'slim'
 gem 'sidetiq'
 gem 'jqplot-rails'
+gem 'unicorn'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
