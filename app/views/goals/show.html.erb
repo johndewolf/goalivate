@@ -63,21 +63,21 @@
           edit_goal_checkpoint_path(@goal, @goal.checkpoints.last) %></td></tr>
     </table>
 <% end %>
-<% i = 1 %>
-<div id="resizeable1">
-<%= jqplot 400, "100%", [@goal.checkpoints.map{|t| t.user_input},
-                          @goal.checkpoints.map{|t| t.target}],
-          axes: {
-            xaxis: {min: 0, max: @goal.checkpoints.count}, label: 'test'
-            },
-          grid: {
-            shadow: false
-            } %>
+<div class="row">
+  <%= jqplot 400, "100%", [@goal.checkpoints.map{|t| t.user_input},
+                            @goal.checkpoints.map{|t| t.target}],
+            axes: {
+              xaxis: {min: 0, max: @goal.checkpoints.count}, label: 'test'
+              },
+            grid: {
+              shadow: false
+              } %>
 </div>
-
-
+<div class="row">
+<p></p>
 <% if @goal.user == current_user && @goal.completed_on == nil %>
   <%= link_to 'Edit', edit_goal_path(@goal) %> |
   <%= link_to 'Delete Goal', goal_path(@goal), method: :delete %> |
 <% end %>
 <%= link_to 'Back To User', user_path(@user) %>
+</div>

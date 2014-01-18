@@ -13,7 +13,6 @@ class CheckpointsController < ApplicationController
     @checkpoint = Checkpoint.find(params[:id])
       if @checkpoint.update(checkpoint_params)
         Checkpoint.next_for(@checkpoint.goal)
-
         redirect_to @checkpoint.goal, notice: 'Goal was successfully updated.'
       else
         render action: 'edit'
