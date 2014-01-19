@@ -62,6 +62,23 @@ class Goal < ActiveRecord::Base
     where("completed_on IS NOT null")
   end
 
+  def percentage_complete
+    if last_user_input == nil
+      0
+    else
+      100 - ((((target - last_user_input) / target).abs) * 100)
+    end
+  end
+
+  def last_user_input
+    last = checkpoints.where("user_input IS NOT null").order(:updated_at).last
+    if last == nil
+      nil
+    else
+      last.user_input
+    end
+  end
+
   private
 
   def goal_is_greater_than_start

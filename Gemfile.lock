@@ -53,6 +53,8 @@ GEM
       simplecov (>= 0.7)
       term-ansicolor
       thor
+    css3-progress-bar-rails (0.5.0)
+      rails (>= 3.1)
     daemons (1.1.9)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
@@ -260,6 +262,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
   coveralls
+  css3-progress-bar-rails
   devise
   dotenv-rails
   email_spec

@@ -25,6 +25,7 @@ gem 'slim'
 gem 'sidetiq'
 gem 'jqplot-rails'
 gem 'unicorn'
+gem 'css3-progress-bar-rails'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
