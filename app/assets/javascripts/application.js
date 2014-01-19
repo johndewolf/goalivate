@@ -23,11 +23,11 @@ $(function(){
   $('#resizable1').bind('resize', function(event, ui) {
         plot1.replot( { resetAxes: true } );
     });
+});
 
-  $(".pagination a").live("click", function() {
+$(".pagination a").live("click", function() {
     $(".pagination").html("Checkpoints are loading");
     $.getScript(this.href);
     return false;
   });
-});
 });
