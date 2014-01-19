@@ -26,6 +26,8 @@ gem 'sidetiq'
 gem 'jqplot-rails'
 gem 'unicorn'
 gem 'css3-progress-bar-rails'
+gem 'will_paginate', '~> 3.0'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

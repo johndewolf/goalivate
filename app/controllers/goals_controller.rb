@@ -23,6 +23,8 @@ class GoalsController < ApplicationController
   def show
     @goal = Goal.find(params[:id])
     @user = current_user
+    @checkpoints = @goal.checkpoints.paginate(:page => params[:page],
+      per_page: 5).order('updated_at DESC')
   end
 
   def edit

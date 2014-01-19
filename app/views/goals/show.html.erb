@@ -56,7 +56,7 @@
               <th>User input</th>
             </thead>
           </tr>
-            <% @goal.checkpoints.each do |checkpoint| %>
+            <% @checkpoints.each do |checkpoint| %>
               <tr>
                 <td><%= checkpoint.complete_by.strftime("%B %d, %Y") %></td>
                 <td><%= "%g" % ("%.2f" % checkpoint.target) %></td>
@@ -68,6 +68,7 @@
               <tr align="center"><td COLSPAN=3><%= link_to 'Update Checkpoint',
               edit_goal_checkpoint_path(@goal, @goal.checkpoints.last) %></td></tr>
          </table>
+        <%= will_paginate @checkpoints %>
     </div>
   </div>
 <% end %>
