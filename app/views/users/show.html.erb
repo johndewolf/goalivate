@@ -27,6 +27,11 @@
               <td><%= "%g" % ("%.2f" % goal.target) %></td>
               <td><%= goal.end_date.strftime("%B %d, %Y") %></td>
             </tr>
+              <% if goal.percentage_complete < 50 %>
+                <td COLSPAN=4><%= progress_bar(goal.percentage_complete, :color => 'orange') %></td>
+              <% else %>
+                <td COLSPAN=4><%= progress_bar(goal.percentage_complete, :color => 'green') %></td>
+              <% end %>
           <% end %>
         </table>
       </div>
