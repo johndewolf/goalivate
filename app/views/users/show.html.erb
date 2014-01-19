@@ -1,4 +1,4 @@
-<% if @user = current_user %>
+<% if @user == current_user %>
   <h1>Your goals</h1>
 <% else %>
 <h1><%= @user.first_name %>'s goals</h1>
@@ -7,12 +7,6 @@
   <h2>User has no goals</h2>
 <% elsif @user.goals.active.empty? && @user == current_user %>
   <h2>  <%= link_to "You have no goals! Create one!", new_goal_path, :method => "get" %> </h2>
-    <div class="row">
-      <div class="small-12 columns">
-        <h2>Past Goals</h2>
-        <%= render 'past_goals_table' %>
-      </div>
-    </div>
 <% else %>
   <div class="row">
     <div class="small-12 columns">

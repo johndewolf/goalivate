@@ -35,8 +35,9 @@ class Goal < ActiveRecord::Base
   end
 
   def delete_invalid_checkpoints
+    binding.pry
     checkpoints.each do |checkpoint|
-      if checkpoint.user_input == nil && checkpoint != checkpoints.last
+      if checkpoint.user_input == nil
         checkpoint.delete
       end
     end

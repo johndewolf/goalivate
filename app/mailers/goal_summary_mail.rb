@@ -1,7 +1,7 @@
 class GoalSummaryMail < ActionMailer::Base
 
-  def send_summary(user_id)
-    @user = User.find(user_id)
+  def send_summary(user)
+    @user = user
     mail to: @user.email,
       subject: 'Goalivate Weekly Summary',
       from: 'jack@goalivate.com'
