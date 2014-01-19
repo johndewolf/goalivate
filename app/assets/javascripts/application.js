@@ -20,9 +20,9 @@
 $(function(){
   $(document).foundation();
     setTimeout(function(){ $('.alert-box').fadeOut() }, 5000);
-  $('#resizable1').bind('resize', function(event, ui) {
-        plot1.replot( { resetAxes: true } );
-    });
+  // $('#resizable1').bind('resize', function(event, ui) {
+  //       plot1.replot( { resetAxes: true } );
+  //   });
 });
 
 $(".pagination a").live("click", function() {
@@ -30,4 +30,3 @@ $(".pagination a").live("click", function() {
     $.getScript(this.href);
     return false;
   });
-});
