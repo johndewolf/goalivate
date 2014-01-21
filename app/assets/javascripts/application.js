@@ -24,9 +24,9 @@ $(function(){
   //       plot1.replot( { resetAxes: true } );
   //   });
 });
-
 $(".pagination a").live("click", function() {
     $(".pagination").html("Checkpoints are loading");
     $.getScript(this.href);
     return false;
   });
+

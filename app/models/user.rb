@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
   has_many :goals,
     inverse_of: :user
 
+  has_many :checkpoints,
+    through: :goals
+
   def show
     @user = User.find(params[:id])
   end

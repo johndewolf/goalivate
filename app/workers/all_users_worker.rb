@@ -4,7 +4,7 @@ class AllUsersWorker
 
     sidekiq_options :retry => false
 
-  recurrence { weekly }
+
 
   def perform
     User.pluck(:id).each do |user_id|

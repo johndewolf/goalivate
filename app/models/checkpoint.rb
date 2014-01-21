@@ -7,6 +7,7 @@ class Checkpoint < ActiveRecord::Base
   belongs_to :goal,
     inverse_of: :checkpoints
 
+
   def self.next_for(goal)
     goal.delete_invalid_checkpoints
     if goal.checkpoints.completed.any? &&

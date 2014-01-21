@@ -5,12 +5,12 @@ class CheckpointsController < ApplicationController
   end
 
   def edit
-    @checkpoint = Checkpoint.find(params[:id])
+    @checkpoint = current_user.checkpoints.find(params[:id])
     @goal = @checkpoint.goal
   end
 
   def update
-    @checkpoint = Checkpoint.find(params[:id])
+    @checkpoint = current_user.checkpoints.find(params[:id])
       if @checkpoint.update(checkpoint_params)
         Checkpoint.next_for(@checkpoint.goal)
         redirect_to @checkpoint.goal, notice: 'Goal was successfully updated.'

@@ -82,7 +82,6 @@
               shadow: false
               } %>
 </div>
-
 <p></p>
 <% if @goal.user == current_user && @goal.completed_on == nil %>
   <%= link_to 'Edit', edit_goal_path(@goal) %> |
