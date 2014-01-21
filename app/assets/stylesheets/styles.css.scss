@@ -18,9 +18,6 @@ table {
   margin-top: 2em;
 }
 
-.bar_container {
-  padding: 0px
-}
 .sign-in-box {
   // margin-left: 5em;
   width: 100%;
@@ -68,6 +65,28 @@ a.footer {
   border-top: 1px solid;
   text-align: center;
 }
+
+//Progress Bars//
+.bar_container {
+  padding: 0px;
+}
+
+.orange {
+  background: #E71919;
+}
+
+.orange_mortice {
+  background: #E7D7B5;
+}
+
+.green {
+  background: #41C43B;
+}
+
+.green_mortice {
+  background: #E7D7B5;
+}
+//
 
 @media screen and (max-width: 600px) {
   #checkpoints-graph {
