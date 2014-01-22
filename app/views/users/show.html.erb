@@ -20,7 +20,7 @@
             <th>Goal Date</th>
           </thead>
         </tr>
-          <% @user.goals.active.each do |goal| %>
+          <% @active_goals.each do |goal| %>
             <tr>
               <td><%= link_to "#{goal.title}", goal_path(goal) %></td>
               <td><%= "%g" % ("%.2f" % goal.starting_point) %></td>
@@ -36,6 +36,7 @@
         </table>
       </div>
     </div>
+    <%= will_paginate @past_goals, param_name: :active_goals %>
     <div class="row">
       <div class="small-12 columns">
         <% if @user == current_user %>
@@ -47,7 +48,8 @@
       <div class="row">
         <div class="small-12 columns">
           <h2>Past Goals</h2>
-            <%= render 'past_goals_table' %>
+          <%= render 'past_goals_table' %>
+          <%= will_paginate @past_goals, param_name: :past_goals %>
         </div>
       </div>
     <% end %>

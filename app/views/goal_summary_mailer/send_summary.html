@@ -6,10 +6,10 @@
   <body>
     <% if @user != nil %>
       <% if @user.goals.active.any? %>
-          <h1 style="color:#7B9B66"><%= "Hello #{@user.first_name}" %></h1>
+          <h1 style="color:#7B9B66"><%= "Hello #{@user.first_name}" %>,</h1>
 
-          <p><%= "Here are your upcoming checkpoints for this week" %></p>
-          <p style="color:#D13838; font-size:16px"><% @user.goals.active.each do |goal| %>
+          <p style="color:#D13838; font-size:16px"><%= "Here are your upcoming checkpoints for this week" %></p>
+          <p><% @user.goals.active.each do |goal| %>
               <%= "#{pluralize("%g" % ("%.2f" % goal.checkpoints.last.target),
               goal.unit_of_measurement)} by
               #{goal.checkpoints.last.complete_by.strftime("%B %d, %Y")}" %></p>

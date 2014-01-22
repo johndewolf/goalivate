@@ -7,7 +7,7 @@
       <th>Completed?</th>
     </thead>
   </tr>
-    <% @user.goals.past.each do |goal| %>
+    <% @past_goals.each do |goal| %>
       <tr>
         <td><%= link_to "#{goal.title}", goal_path(goal) %></td>
         <td><%= "%g" % ("%.2f" % goal.starting_point) %></td>
