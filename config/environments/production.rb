@@ -80,9 +80,9 @@ BreakableToyTwo::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'http://goalivate.herokuapp.com/' }
 ActionMailer::Base.smtp_settings = {
-  :user_name => 'app21279338@heroku.com',
-  :password => 'msfy6k8l',
-  :domain => 'http://goalivate.herokuapp.com/',
+  :user_name      => ENV['SENDGRID_USERNAME'],
+  :password       => ENV['SENDGRID_PASSWORD'],
+  :domain         => ENV['SENDGRID_DOMAIN'],
   :address => 'smtp.sendgrid.net',
   :port => 587,
   :authentication => :plain,
