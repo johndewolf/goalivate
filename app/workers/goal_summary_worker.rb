@@ -3,7 +3,7 @@ class GoalSummaryWorker
   include Sidetiq::Schedulable
 
    recurrence do
-    daily.hour_of_day(19)
+    daily.hour_of_day(0)
    end
 
   def perform
