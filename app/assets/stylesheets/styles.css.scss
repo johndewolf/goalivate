@@ -48,11 +48,14 @@ table {
 
 }
 
-blockquote {
+#quote-signedin {
   text-align: right;
   margin-top: 16px;
 }
 
+#quote-signedout {
+  text-align: left;
+}
 #cp-g-user {
   display: inline-block;
   margin-left: 2px;

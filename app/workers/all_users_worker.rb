@@ -4,8 +4,6 @@ class AllUsersWorker
 
     sidekiq_options :retry => false
 
-
-
   def perform
     User.pluck(:id).each do |user_id|
       GoalSummaryWorker.perform_async(user_id)

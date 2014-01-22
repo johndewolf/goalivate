@@ -16,7 +16,9 @@
     <% end %>
     </div>
     <div class="small-12 small-right medium-5 columns">
-      <blockquote><span class="bqstart">&#8220;</span><%= random_quotes %></span></blockquote>
+      <div id="quote-signedin">
+        <blockquote><%= random_quotes %></blockquote>
+      </div>
     </div>
     <% else %>
         <div class="small-12 small-left medium-7 columns">
@@ -24,7 +26,10 @@
           <p>This site is here to help you get your life into order. How you ask? It's simple, first you sign up then we show up at your house and kidnap your dog and/or cat. You don't get Fluffy back until your goal list is complete.</p>
           <h2>How it Really Works</h2>
           <p>First you sign up, then you create a goal for something that you'd like accomplish over the time period. It can be for anything: running, saving money, studying. Goalivate will dynamically calculate weekly checkpoints for you based off your current progress to ensure that you achieve your goal.</p>
-            <blockquote><span class="bqstart">&#8220;</span><%= random_quotes %></span></blockquote>
+          <br>
+          <div id="quote-signedout">
+            <blockquote><%= random_quotes %></blockquote>
+          </div>
         </div>
       <div class="small-12 small-right medium-5 columns">
         <div class="sign_in_box">
