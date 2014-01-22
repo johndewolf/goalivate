@@ -5,7 +5,6 @@ class GoalSummaryMailer < ActionMailer::Base
     mail(to: @user.email,
       subject: 'Goalivate Weekly Summary',
       from: 'jack@goalivate.com')
-    content_type "text/html"
   end
 
 end
