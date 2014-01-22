@@ -33,7 +33,7 @@ table {
   vertical-align: right;
   background: rgba (184, 134, 11, 0.4);
 }
-
+//Checkpoint Progress Graph//
 #checkpoints-graph {
   position: relative;
 }
@@ -46,6 +46,11 @@ table {
   background-color: #F2F2F2;
   padding: 4px;
 
+}
+
+blockquote {
+  text-align: right;
+  margin-top: 16px;
 }
 
 #cp-g-user {
@@ -63,6 +68,7 @@ table {
   width: 10px;
   background-color: #2980b9;
 }
+//
 //Logo
 .top-bar ul.title-area li.name h1 a{
   font-family: 'Aladin', cursive;
@@ -106,7 +112,7 @@ a.footer {
 }
 
 .orange {
-  background: #E71919;
+  background: #CB1D1D;
 }
 
 .orange_mortice {
@@ -114,7 +120,7 @@ a.footer {
 }
 
 .green {
-  background: #41C43B;
+  background: #08AE00;
 }
 
 .green_mortice {

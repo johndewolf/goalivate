@@ -1,37 +1,40 @@
 <div class="row">
   <% if user_signed_in? %>
-    <div class="small-12 columns">
-    <% if current_user.goals.active.any? %>
-            <h2>Your active goals:</h2>
-            <% current_user.goals.active.each do |goal| %>
-            <p><%= "#{pluralize("%g" % ("%.2f" % goal.target),
-                    goal.unit_of_measurement)} by
-                    #{goal.end_date.strftime("%B %d, %Y")}. " %>
-            <%= link_to 'Get to it!', goal_path(goal) %></p>
-            <% end %>
-        <% else %>
-          <h2>You have no goals!</h2>
-          <p><%= "How are you going to accomplish anything without goals?" %>
-          <%=link_to "Go create one now!", new_goal_path %></p>
+    <div class="small-12 small-left medium-7 columns">
+      <% if current_user.goals.active.any? %>
+        <h2>Your active goals:</h2>
+        <% current_user.goals.active.each do |goal| %>
+          <p><%= "#{pluralize("%g" % ("%.2f" % goal.target),
+                  goal.unit_of_measurement)} by
+                  #{goal.end_date.strftime("%B %d, %Y")}. " %>
+          <%= link_to 'Get to it!', goal_path(goal) %></p>
         <% end %>
+    <% else %>
+      <h2>You have no goals!</h2>
+      <p><%= "How are you going to accomplish anything without goals?" %>
+      <%=link_to "Go create one now!", new_goal_path %></p>
+    <% end %>
+    </div>
+    <div class="small-12 small-right medium-5 columns">
+      <blockquote><span class="bqstart">&#8220;</span><%= random_quotes %></span></blockquote>
+    </div>
     <% else %>
         <div class="small-12 small-left medium-7 columns">
           <h2>Welcome to Goalivate</h2>
           <p>This site is here to help you get your life into order. How you ask? It's simple, first you sign up then we show up at your house and kidnap your dog and/or cat. You don't get Fluffy back until your goal list is complete.</p>
           <h2>How it Really Works</h2>
           <p>First you sign up, then you create a goal for something that you'd like accomplish over the time period. It can be for anything: running, saving money, studying. Goalivate will dynamically calculate weekly checkpoints for you based off your current progress to ensure that you achieve your goal.</p>
-            <blockquote><span class="bqstart">&#8220;</span>Speech marks. Curly quotes. That annoying thing cool people do with their fingers to emphasize a buzzword, shortly before you hit them.<span class="bqend">&#8221;</span></blockquote>
+            <blockquote><span class="bqstart">&#8220;</span><%= random_quotes %></span></blockquote>
         </div>
       <div class="small-12 small-right medium-5 columns">
-      <div class="sign_in_box">
-        <div class="header_for_signin">
-          <h2>Sign Up Now!</h2>
+        <div class="sign_in_box">
+          <div class="header_for_signin">
+            <h2>Sign Up Now!</h2>
+          </div>
+          <%= render 'devise/registrations/sign_up' %>
         </div>
-        <%= render 'devise/registrations/sign_up' %>
-      </div>
       </div>
     <% end %>
-  </div>
 </div>
 
 
