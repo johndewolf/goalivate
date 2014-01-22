@@ -73,14 +73,19 @@
   </div>
 <% end %>
 <div id="checkpoints-graph">
+  <div id="graph-legend">
+    User Input:<div id="cp-g-user"></div><br>
+    Checkpoint Target:<div id="cp-g-target"></div>
+  </div>
   <%= jqplot 400, "100%", [@goal.checkpoints.map{|t| t.user_input},
                             @goal.checkpoints.map{|t| t.target}],
             axes: {
-              xaxis: {min: 0, max: @goal.checkpoints.count}, label: 'test'
+              xaxis: {min: 0, max: @goal.checkpoints.count}
               },
             grid: {
               shadow: false
-              } %>
+              },
+            series:[{color:'#e67e22'}, {color: "#2980b9"}]%>
 </div>
 <p></p>
 <% if @goal.user == current_user && @goal.completed_on == nil %>

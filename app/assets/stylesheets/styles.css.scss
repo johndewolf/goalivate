@@ -34,6 +34,35 @@ table {
   background: rgba (184, 134, 11, 0.4);
 }
 
+#checkpoints-graph {
+  position: relative;
+}
+
+#graph-legend {
+  position: absolute;
+  top: 60px;
+  left: 55px;
+  z-index: 1;
+  background-color: #F2F2F2;
+  padding: 4px;
+
+}
+
+#cp-g-user {
+  display: inline-block;
+  margin-left: 2px;
+  height: 10px;
+  width: 10px;
+  background-color: #e67e22;
+}
+
+#cp-g-target {
+  display: inline-block;
+  margin-left: 2px;
+  height: 10px;
+  width: 10px;
+  background-color: #2980b9;
+}
 //Logo
 .top-bar ul.title-area li.name h1 a{
   font-family: 'Aladin', cursive;
