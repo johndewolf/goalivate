@@ -1,2 +1,21 @@
-<h1>New Goal</h1>
-<%= render 'form' %>
+<div class="row">
+  <div class="small-12 small-left medium-6 columns">
+    <h1>New Goal</h1>
+  </div>
+  <div class="small-12 small-right medium-6 columns">
+    <div id="myModal" class="reveal-modal" data-reveal>
+      <h2>Sample Goal</h2>
+      <p class="lead">Here is a sample goal for someone who wants to save cash for vacation. They already have $500 saved, but want to get to $2000.</p>
+      <%= image_tag "samplegoal.png" %>
+      <a class="close-reveal-modal">&#215;</a>
+    </div>
+    <div class="goal-modal">
+     <a href="#" data-reveal-id="myModal">Click here for an example</a>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    <%= render 'form' %>
+  </div>
+</div>
