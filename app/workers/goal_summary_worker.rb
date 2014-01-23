@@ -2,12 +2,10 @@ class GoalSummaryWorker
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
-   recurrence do
-    daily.hour_of_day(1)
-   end
+  recurrence { hourly }
 
   def perform
-    user = User.find(1)
-    GoalSummaryMailer.send_summary(user).deliver
+    # user = User.find(1)
+    GoalSummaryMailer.send_summary(1).deliver
   end
 end
