@@ -3,8 +3,7 @@ class AllUsersWorker
   include Sidetiq::Schedulable
 
   recurrence do
-    daily
-    weekly.day(:monday)
+    weekly.day(:sunday)
   end
 
   def perform
