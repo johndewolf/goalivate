@@ -2,7 +2,7 @@ class GoalSummaryWorker
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
-  recurrence { hourly }
+  recurrence { hourly(1) }
 
   def perform
     # user = User.find(1)
