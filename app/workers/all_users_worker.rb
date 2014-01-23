@@ -2,7 +2,7 @@ class AllUsersWorker
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
-  weekly.day(:monday).hour_of_day(8)
+  recurrence { daily }
 
   def perform
     User.pluck(:id).each do |user_id|
