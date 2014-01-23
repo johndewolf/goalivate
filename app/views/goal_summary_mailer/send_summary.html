@@ -6,18 +6,18 @@
   <body>
     <% if @user != nil %>
       <% if @user.goals.active.any? %>
-          <h1 style="color:#7B9B66"><%= "Hello #{@user.first_name}" %>,</h1>
+          <h1 style="color:#7B9B66; font-family:Lucida Sans Unicode"><%= "Hello #{@user.first_name}" %>,</h1>
 
-          <p style="color:#D13838; font-size:16px"><%= "Here are your upcoming checkpoints for this week" %></p>
-          <p><% @user.goals.active.each do |goal| %>
+          <p style="color:#D13838; font-size:16px; font-family:Lucida Sans Unicode"><%= "Here are your upcoming checkpoints for this week" %></p>
+          <p style="color:#D13838; font-size:16px; font-family:Lucida Sans Unicode"><% @user.goals.active.each do |goal| %>
               <%= "#{pluralize("%g" % ("%.2f" % goal.checkpoints.last.target),
               goal.unit_of_measurement)} by
               #{goal.checkpoints.last.complete_by.strftime("%B %d, %Y")}" %></p>
           <% end %>
         <% else %>
-          <h1 style="color:#7B9B66"><%= "Hi #{@user.first_name}" %></h1>
-          <p style="color:#D13838; font-size:16px">You have no active goals!</p>
-          <p><%=link_to "Come to Goalivate and create one now.", new_goal_path %></p>
+          <h1 style="color:#7B9B66; font-family:Lucida Sans Unicode"><%= "Hi #{@user.first_name}" %></h1>
+          <p style="color:#D13838; font-size:16px; font-family:Lucida Sans Unicode">You have no active goals!</p>
+          <p style="color:#D13838; font-size:16px; font-family:Lucida Sans Unicode"><%=link_to "Come to Goalivate and create one now.", new_goal_path %></p>
       <% end %>
     <% end %>
   </body>
