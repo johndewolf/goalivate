@@ -1,9 +1,33 @@
 <%= simple_form_for @goal do |f| %>
-  <%= f.error_notification %>
-  <%= f.input :title, placeholder: 'Shoot more foul shots' %>
-  <%= f.input :starting_point, placeholder: "0" %>
-  <%= f.input :target, placeholder: '1000' %>
-  <%= f.input :unit_of_measurement, placeholder: 'shot' %>
-  <%= f.input :end_date, label: 'Goal date', as: :date  %>
-  <%= f.button :submit %>
+  <div class="row">
+    <div class="small-12 columns">
+      <%= f.error_notification %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <%= f.input :title, placeholder: 'Shoot more foul shots' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 medium-4 columns">
+      <%= f.input :starting_point, placeholder: "0" %>
+    </div>
+    <div class="small-12 medium-4 columns">
+      <%= f.input :target, placeholder: '1000' %>
+    </div>
+    <div class="small-12 medium-4 columns">
+      <%= f.input :unit_of_measurement, placeholder: 'shot' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <%= f.input :end_date, label: 'Goal date', as: :date  %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <%= f.button :submit %>
+    </div>
+  </div>
 <% end %>
