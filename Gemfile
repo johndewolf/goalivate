@@ -45,7 +45,9 @@ end
 
 gem 'rails_12factor'
 
-
+group :assets do
+  gem 'foundation-icons-sass-rails'
+end
 
 group :test, :development do
   gem 'pry-rails'
@@ -68,6 +70,7 @@ end
 
 group :test do
   gem 'coveralls', require: false
+  gem 'rspec-sidekiq'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

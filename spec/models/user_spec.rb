@@ -12,7 +12,7 @@ describe User do
 
   it { should have_many(:goals) }
 
-  it "has matching password confirmation for the password" do
+  it "does not have matching password confirmation for the password" do
     user = User.new
     user.password = 'password'
     user.password_confirmation = 'passowrd'

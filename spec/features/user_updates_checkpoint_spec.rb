@@ -57,12 +57,11 @@ require 'spec_helper'
     expect(page).to_not have_content('Update Checkpoint')
   end
 
-  scenario 'goal date is in the past' do
+  scenario 'goal date is in the past, user cannot update' do
     goal = FactoryGirl.build(:goal, end_date: Date.yesterday - 1)
     goal.save(validate: false)
     sign_in_as(goal.user)
-    click_on 'My Goals'
-    click_on "freethrows"
+    visit "/goals/#{goal.id}"
     expect(page).to_not have_content('Update Checkpoint')
   end
 end

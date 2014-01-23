@@ -11,6 +11,7 @@ class Goal < ActiveRecord::Base
     if: -> (goal) { goal.end_date.present? }
   validate :goal_is_greater_than_start,
     if: -> (goal) { goal.target.present? && goal.starting_point.present? }
+
   belongs_to :user,
     inverse_of: :goals
 
