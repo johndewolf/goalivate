@@ -1,0 +1,21 @@
+<!-- <table>
+  <tr>
+    <thead>
+      <th>Complete By:</th>
+      <th>Target</th>
+      <th>User input</th>
+    </thead>
+  </tr>
+    <% @checkpoints.each do |checkpoint| %>
+      <tr>
+        <td><%= checkpoint.complete_by.strftime("%B %d, %Y") %></td>
+        <td><%= "%g" % ("%.2f" % checkpoint.target) %></td>
+        <% unless checkpoint == @goal.checkpoints.last %>
+          <td><%= "%g" % ("%.2f" % checkpoint.user_input) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+      <tr align="center"><td COLSPAN=3><%= link_to 'Update Checkpoint',
+      edit_goal_checkpoint_path(@goal, @goal.checkpoints.last) %></td></tr>
+</table>
+ -->

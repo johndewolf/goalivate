@@ -80,7 +80,7 @@
   <%= jqplot 400, "100%", [@goal.checkpoints.map{|t| t.user_input},
                             @goal.checkpoints.map{|t| t.target}],
             axes: {
-              xaxis: {min: 0, max: @goal.checkpoints.count}
+              xaxis: {min: 0, max: @goal.checkpoints.count + 1}
               },
             grid: {
               shadow: false

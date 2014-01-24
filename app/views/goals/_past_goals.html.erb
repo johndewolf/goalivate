@@ -1,14 +1,14 @@
 <!-- <table>
   <tr>
     <thead>
-      <th>Completed On:</th>
+      <th>Complete By:</th>
       <th>Target</th>
       <th>User input</th>
     </thead>
   </tr>
-    <% @goal.checkpoints.each do |checkpoint| %>
+    <% @checkpoints.each do |checkpoint| %>
       <tr>
-        <td><%= checkpoint.updated_at.strftime("%B %d, %Y") %></td>
+        <td><%= checkpoint.complete_by.strftime("%B %d, %Y") %></td>
         <td><%= "%g" % ("%.2f" % checkpoint.target) %></td>
         <td><%= "%g" % ("%.2f" % checkpoint.user_input) %></td>
       </tr>
