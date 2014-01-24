@@ -1,9 +1,16 @@
 <h1><%= current_user == @user ? "Your" : "#{@user.first_name}'s"%> Goals</h1>
 <% if @user.goals.empty? && @user != current_user %>
   <h2>User has no goals</h2>
+  <%= render 'past_goals_table' %>
+  <%= paginate @past_goals,
+    param_name: :past_goals_page %>
 <% elsif @user.goals.active.empty? && @user == current_user %>
   <h2><%= link_to "You have no goals! Create one!",
     new_goal_path, :method => "get" %> </h2>
+    <h2>Past Goals</h2>
+    <%= render 'past_goals_table' %>
+    <%= paginate @past_goals,
+      param_name: :past_goals_page %>
 <% else %>
   <div class="row">
     <div class="small-12 columns">
