@@ -82,8 +82,7 @@ table {
   background-color:black;
 
 }
-//
-
+//Index Page
 .header-for-signin {
   margin-left: 5em;
 }
@@ -92,16 +91,19 @@ table {
   padding: 10px;
   margin: 10px;
 }
+//
+//seach box//
+.search-bar li {
+  display: inline-block;
+}
+
+//
 //Footer//
 .footer {
   position: relative;
   bottom:0;
   width:100%;
   padding-top: 100px;
-}
-
-footer.inline-list {
-  border-top: 1px solid;
 }
 
 a.footer {

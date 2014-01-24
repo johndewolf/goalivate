@@ -1,4 +1,4 @@
-<!-- <table>
+<table>
   <tr>
     <thead>
       <th>Completed On:</th>
@@ -6,7 +6,7 @@
       <th>User input</th>
     </thead>
   </tr>
-    <% @goal.checkpoints.each do |checkpoint| %>
+    <% @checkpoints.each do |checkpoint| %>
       <tr>
         <td><%= checkpoint.updated_at.strftime("%B %d, %Y") %></td>
         <td><%= "%g" % ("%.2f" % checkpoint.target) %></td>
@@ -14,4 +14,4 @@
       </tr>
     <% end %>
 </table>
- -->
+<%= paginate @checkpoints, param_name: :checkpoints_page %>

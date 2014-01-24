@@ -8,28 +8,39 @@
   </head>
     <body>
         <div class="container">
-          <%= render "layouts/navigation" %>
-        <div class="row">
-          <div class="small-12 columns">
-            <% if flash.any? %>
-              <div class='alert-box'>
-                <% flash.each do |name, msg| -%>
-                  <%= content_tag :div, msg, class: name %>
-                <% end -%>
+            <%= render "layouts/navigation" %>
+              <div class="row">
+                <div class="small-4 columns left">
+                  <div class="search-bar">
+                    <ul>
+                      <li><input type="text" placeholder="Get inspired, search others' goals"></li>
+                      <li><a href="#" class="tiny button alert">Search</a></li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-            <% end %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="small-12 columns">
-                  <div class="content-box">
-              <%= yield %>
+          <div class="row">
+            <div class="small-12 columns">
+              <% if flash.any? %>
+                <div class='alert-box'>
+                  <% flash.each do |name, msg| -%>
+                    <%= content_tag :div, msg, class: name %>
+                  <% end -%>
+                </div>
+              <% end %>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="small-12 columns">
-            <%= render 'layouts/footer' %>
+          <div class="row">
+            <div class="small-12 columns">
+              <div class="content-box">
+                <%= yield %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
+              <%= render 'layouts/footer' %>
+            </div>
           </div>
         </div>
       <%= javascript_include_tag "application" %>
