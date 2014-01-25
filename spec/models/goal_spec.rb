@@ -106,4 +106,11 @@ describe Goal do
     end
   end
 
+  describe 'end_date_has_passed?' do
+    it 'returns true if the end date of the goal is in the past' do
+      goal = FactoryGirl.build(:goal, end_date: Date.yesterday)
+      expect(goal.end_date_has_passed?).to eql true
+    end
+  end
+
 end

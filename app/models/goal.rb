@@ -43,9 +43,9 @@ class Goal < ActiveRecord::Base
     end
   end
 
-  def days_in_goal
-    ((end_date - created_at) / (60 * 60 * 24)).to_i
-  end
+  # def days_in_goal
+  #   ((end_date - created_at) / (60 * 60 * 24)).to_i
+  # end
 
   def self.active
     incomplete.where("end_date >= ?", Date.today)
@@ -67,7 +67,7 @@ class Goal < ActiveRecord::Base
     if last_user_input == nil
       0
     else
-      100 - ((((target - last_user_input) / target).abs) * 100)
+      100 - (((target - last_user_input) / target).abs) * 100
     end
   end
 
@@ -97,14 +97,5 @@ class Goal < ActiveRecord::Base
   def singularize_measurement_unit
     unit_of_measurement.singularize
   end
-
-  # def weeks_in_goal
-  #   weeks = days_in_goal / 7
-  #     if weeks % 1 != 0
-  #       (weeks + 1).to_i
-  #     else
-  #       weeks
-  #     end
-  # end
 end
 
