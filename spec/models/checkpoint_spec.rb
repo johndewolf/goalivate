@@ -16,19 +16,6 @@ describe Checkpoint do
 
   it { should have_valid(:user_input).when(200) }
 
-  # it 'calculates days remaining' do
-  #   expect(checkpoint.days_remaining).to eql((checkpoint.goal.end_date - checkpoint.updated_at) / 86400)
-  # end
-
-  # it 'updates the complete_by to the end date if the checkpoint is updated
-  #   with less than 7 days remaining to the end of the goal' do
-  #   checkpoint.updated_at = checkpoint.goal.end_date - 2
-  #   checkpoint.save
-  #   checkpoint.complete_by = checkpoint.calculate_complete_by
-  #   checkpoint.save
-  #   expect(checkpoint.complete_by).to eql(checkpoint.goal.end_date)
-  # end
-
   describe '.next_for' do
     it 'returns a new checkpoint for a given goal' do
       goal = FactoryGirl.create(:goal)
@@ -79,6 +66,14 @@ describe Checkpoint do
         starting_point: 0, target: 20)
       checkpoint = Checkpoint.unit_increase(goal)
       expect(checkpoint).to eql(10.0)
+    end
+  end
+
+  describe '.checkpoints_remaining' do
+    it 'returns the correct number of remaining checkpoints' do
+      goal = FactoryGirl.create(:goal, end_date: Date.today + 2.weeks)
+      Checkpoint.next_for(goal)
+      expect(Checkpoint.remaining(goal)).to eql 2
     end
   end
 end

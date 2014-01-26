@@ -25,24 +25,9 @@ class Checkpoint < ActiveRecord::Base
     where.not(user_input: nil)
   end
 
-  # def days_remaining
-  #   (goal.end_date - goal.checkpoints.last.updated_at) / (24 * 60 * 60)
-  # end
-
-  #   def rep_increase
-  #   increase = ((goal.target - goal.checkpoints.last.user_input) / checkpoints_remaining)
-  #   increase += 1 if increase == 0
-  #   next_target = goal.checkpoints.last.user_input + increase
-  #   if next_target == goal.target - 1
-  #     goal.target
-  #   else
-  #     next_target
-  #   end
-  # end
-
   def self.unit_increase(goal)
-    increase = ((goal.target.to_f - last_input_or_starting_point(goal)) / checkpoints_remaining(goal))
-    increase += 1 if increase == 0
+    increase = ((goal.target.to_f - last_input_or_starting_point(goal)) /
+      remaining(goal))
     next_target = last_input_or_starting_point(goal) + increase
     if next_target == goal.target - 1
       goal.target
@@ -67,7 +52,7 @@ class Checkpoint < ActiveRecord::Base
     goal.days_remaining < 7 ? goal.end_date : Date.today + 7
   end
 
-  def self.checkpoints_remaining(goal)
+  def self.remaining(goal)
     (goal.days_remaining / 7.0).ceil
   end
 end

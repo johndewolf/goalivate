@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20140117004043) do
     t.datetime "updated_at"
   end
 
-  create_table "exercises", force: true do |t|
+  create_table "exercise", force: true do |t|
     t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"

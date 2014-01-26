@@ -1,5 +1,5 @@
 <h1>Checkpoint</h1>
-<p>Target: <%= @checkpoint.target%></p>
+<p>Target: <%= "%g" % ("%.2f" % @checkpoint.target) %></p>
 <%= simple_form_for [@checkpoint.goal, @checkpoint] do |f| %>
   <%= f.error_notification %>
   <%= f.input :user_input %>
