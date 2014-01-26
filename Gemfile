@@ -60,6 +60,7 @@ group :test, :development do
   gem 'email_spec'
   gem 'dotenv-rails'
   gem 'timecop'
+  gem 'capybara-webkit'
 end
 
 
