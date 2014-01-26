@@ -1,0 +1,4 @@
+<h1>Hi</h1>
+<% @goals.each do |goal| %>
+  <%= link_to goal.title, goal_path(goal) %>
+<% end %>

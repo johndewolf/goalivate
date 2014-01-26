@@ -4,7 +4,8 @@
       <% if current_user.goals.active.any? %>
         <h2>Your active goals:</h2>
         <% current_user.goals.active.each do |goal| %>
-          <p><%= "#{pluralize("%g" % ("%.2f" % goal.target),
+          <p><%= goal.title %>:
+          <%= "#{pluralize("%g" % ("%.2f" % goal.target),
                   goal.unit_of_measurement)} by
                   #{goal.end_date.strftime("%B %d, %Y")}. " %>
           <%= link_to 'Get to it!', goal_path(goal) %></p>

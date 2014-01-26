@@ -27,7 +27,7 @@ gem 'jqplot-rails'
 gem 'unicorn'
 gem 'css3-progress-bar-rails'
 gem 'kaminari'
-
+gem 'ransack'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

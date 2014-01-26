@@ -9,6 +9,12 @@ class ApplicationController < ActionController::Base
     user_path(@user)
   end
 
+  before_filter :set_search
+
+  def set_search
+    @q= Goal.search(params[:q])
+  end
+
   protected
 
   def configure_permitted_parameters

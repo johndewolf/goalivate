@@ -15,6 +15,10 @@ class GoalsController < ApplicationController
     end
   end
 
+  def index
+    @goals = @q.result(destinct: true)
+  end
+
   def delete
     @user = current_user
     @goal = current_user.goals.find(params[:id])

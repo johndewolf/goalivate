@@ -23,10 +23,12 @@
 </div>
 <% if @goal.completed_on != nil %>
   <h3>Congrats!</h3>
-  <p>You hit your goal now do some dancing</p>
+  <p><%= current_user == @goal.user ? "You" :
+    "#{@goal.user.first_name.capitalize}"%>
+     successfully completed this goal</p>
   <%= render 'goals_checkpoints' %>
 <% elsif @goal.end_date_has_passed? %>
-  <h3>You're end date for the goal has passed.</h3>
+  <h3>The end date for this goal has passed.</h3>
     <h3>Checkpoints:</h3>
     <table>
       <tr>
@@ -80,7 +82,7 @@
   <%= jqplot 400, "100%", [@goal.checkpoints.map{|t| t.user_input},
                             @goal.checkpoints.map{|t| t.target}],
             axes: {
-              xaxis: {min: 0, max: @goal.checkpoints.count + 1}
+              xaxis: { min: 0, max: @goal.checkpoints.count + 1 },
               },
             grid: {
               shadow: false
@@ -92,5 +94,5 @@
   <%= link_to 'Edit', edit_goal_path(@goal) %> |
   <%= link_to 'Delete Goal', goal_path(@goal), method: :delete %> |
 <% end %>
-<%= link_to 'Back To User', user_path(@user) %>
+<%= link_to 'Back To User', user_path(@goal.user) %>
 

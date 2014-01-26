@@ -6,10 +6,19 @@
       </li>
       <li class="toggle-topbar"><a href="#">Menu</a></li>
     </ul>
-
     <section class="top-bar-section">
       <% if user_signed_in? %>
         <ul class="right">
+          <li class="has-form">
+            <div class="row collapse">
+              <div class="large-12 small-9 columns">
+                <%= search_form_for @q do |f| %>
+                <%= f.text_field :title_cont, placeholder: 'Get inspired ' %>
+                <% end %>
+              </div>
+            </div>
+          </li>
+          <li class="divider"></li>
           <li>
             <%= link_to 'Sign Out', destroy_user_session_path,
             method: :delete %>
