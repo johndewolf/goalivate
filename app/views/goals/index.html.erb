@@ -1,4 +1,23 @@
-<h1>Hi</h1>
-<% @goals.each do |goal| %>
-  <%= link_to goal.title, goal_path(goal) %>
+<% if @goals.any? %>
+  <h1>Related Goals:</h1>
+  <table>
+    <tr>
+      <thead>
+        <th>Title:</th>
+        <th>Starting Point:</th>
+        <th>Target:</th>
+        <th>Unit of Measurement</th>
+      </thead>
+    </tr>
+    <% @goals.each do |goal| %>
+      <tr>
+        <td><%= link_to goal.title, goal_path(goal) %></td>
+        <td><%= goal.starting_point %></td>
+        <td><%= goal.target %></td>
+        <td><%= goal.unit_of_measurement %></td>
+      </td>
+    <% end %>
+  </table>
+<% else %>
+  <p>Hmm... doesn't look like there are any goals with that title. Please try something else</p>
 <% end %>
