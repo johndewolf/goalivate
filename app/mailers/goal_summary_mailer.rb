@@ -4,7 +4,7 @@ class GoalSummaryMailer < ActionMailer::Base
     @user = user
     mail(to: @user.email,
       subject: 'Goalivate Weekly Summary',
-      from: 'jack@goalivate.com')
+      from: 'Jack@goalivate.com')
   end
 
 end

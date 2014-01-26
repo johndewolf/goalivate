@@ -1,4 +1,5 @@
 class CheckpointsController < ApplicationController
+before_filter :check_session
 
   def show
     @checkpoint = Checkpoint.find(params[:id])
