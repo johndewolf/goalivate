@@ -49,6 +49,7 @@
 <% else %>
   <div class="row">
    <div class="small-12 columns">
+    <% if current_user == @goal.user %>
       <h3>Checkpoints:</h3>
         <table>
           <tr>
@@ -71,6 +72,9 @@
               edit_goal_checkpoint_path(@goal, @goal.checkpoints.last) %></td></tr>
          </table>
           <%= paginate @checkpoints, param_name: :checkpoints_page %>
+    <% else %>
+      <%= render 'goals_checkpoints' %>
+    <% end %>
     </div>
   </div>
 <% end %>

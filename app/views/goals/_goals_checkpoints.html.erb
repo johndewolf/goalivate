@@ -10,7 +10,9 @@
       <tr>
         <td><%= checkpoint.updated_at.strftime("%B %d, %Y") %></td>
         <td><%= "%g" % ("%.2f" % checkpoint.target) %></td>
-        <td><%= "%g" % ("%.2f" % checkpoint.user_input) %></td>
+        <% unless checkpoint.user_input == nil %>
+          <td><%= "%g" % ("%.2f" % checkpoint.user_input) %></td>
+        <% end %>
       </tr>
     <% end %>
 </table>
