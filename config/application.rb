@@ -6,6 +6,10 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "sprockets/railtie"
 
+
+# if ENV['RAILS_ENV'] == 'environments/development.rb'
+#   YAML.load_file('local_env.example.yml')
+# end
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems

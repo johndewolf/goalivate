@@ -12,6 +12,9 @@ resources :goals, only: [] do
   resources :checkpoints
 end
 
+Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+  username == 'jdewolf06' && password == ENV['SIDEKIQ_PW']
+end
 mount Sidekiq::Web, at: '/sidekiq'
 
   # The priority is based upon order of creation: first created -> highest priority.
