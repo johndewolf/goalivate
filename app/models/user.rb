@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
   validates :email, length: { maximum: 25 }, presence: true
 
   has_many :goals,
-    inverse_of: :user
+    inverse_of: :user,
+    dependent: :destroy
 
   has_many :checkpoints,
     through: :goals

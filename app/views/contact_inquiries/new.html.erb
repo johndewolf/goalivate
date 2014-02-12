@@ -1,6 +1,13 @@
 <h2>Contact Us</h2>
 
 <%= simple_form_for @inquiry do |f| %>
+  <% if @location_search.errors.any? %>
+    <ul class="errors">
+      <% @location_search.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
   <%= f.input :first_name %>
   <%= f.input :last_name %>
   <%= f.input :email %>
