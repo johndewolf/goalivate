@@ -8,6 +8,14 @@ class Checkpoint < ActiveRecord::Base
     inverse_of: :checkpoints
 
   def self.next_for(goal)
+    if goal.starting_point < goal.target
+      self.next_for_increasing(goal)
+    else
+      self.next_for_decreasing(goal)
+    end
+  end
+
+  def self.next_for_increasing(goal)
     goal.delete_invalid_checkpoints
     if goal.checkpoints.completed.any? &&
       goal.checkpoints.last.user_input >= goal.target
@@ -16,6 +24,20 @@ class Checkpoint < ActiveRecord::Base
     else
       goal.checkpoints.create(
         target: unit_increase(goal),
+        complete_by: calculate_complete_by(goal)
+      )
+    end
+  end
+
+  def self.next_for_decreasing(goal)
+    goal.delete_invalid_checkpoints
+    if goal.checkpoints.completed.any? &&
+      goal.checkpoints.last.user_input <= goal.target
+      goal.completed_on = Date.today
+      goal.save
+    else
+      goal.checkpoints.create(
+        target: unit_decrease(goal),
         complete_by: calculate_complete_by(goal)
       )
     end
@@ -34,6 +56,12 @@ class Checkpoint < ActiveRecord::Base
     else
       next_target
     end
+  end
+
+  def self.unit_decrease(goal)
+    decrease = (last_input_or_starting_point(goal) - goal.target.to_f) /
+      remaining(goal)
+    last_input_or_starting_point(goal) - decrease
   end
 
   def self.last_input_or_starting_point(goal)

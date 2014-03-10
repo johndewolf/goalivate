@@ -9,8 +9,6 @@ class Goal < ActiveRecord::Base
   validates_presence_of :unit_of_measurement
   validate :date_is_in_the_future,
     if: -> (goal) { goal.end_date.present? }
-  validate :goal_is_greater_than_start,
-    if: -> (goal) { goal.target.present? && goal.starting_point.present? }
 
   belongs_to :user,
     inverse_of: :goals
@@ -42,10 +40,6 @@ class Goal < ActiveRecord::Base
       end
     end
   end
-
-  # def days_in_goal
-  #   ((end_date - created_at) / (60 * 60 * 24)).to_i
-  # end
 
   def self.active
     incomplete.where("end_date >= ?", Date.today)
@@ -81,12 +75,6 @@ class Goal < ActiveRecord::Base
   end
 
   private
-
-  def goal_is_greater_than_start
-    unless target > starting_point
-      errors[:target] << 'Goal max must be greater than starting'
-    end
-  end
 
   def date_is_in_the_future
     unless end_date > Date.today + 7

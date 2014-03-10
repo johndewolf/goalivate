@@ -36,6 +36,15 @@ describe Checkpoint do
       expect((checkpoint.complete_by).to_date).to eql(Date.today + 7)
     end
 
+    context "it is a decreasing goal" do
+      it "has the correct value for target" do
+        goal = FactoryGirl.create(:goal,
+        end_date: Date.today + 2.weeks, starting_point: 100, target: 0)
+      checkpoint = Checkpoint.next_for(goal)
+      expect(checkpoint.target).to eq(50)
+      end
+    end
+
     context "checkpoint completes the goal" do
       it "updates the goal 'completed_at'" do
         goal = FactoryGirl.create(:goal)
@@ -68,6 +77,16 @@ describe Checkpoint do
       expect(checkpoint).to eql(10.0)
     end
   end
+
+  describe '.unit_decrease' do
+    it 'decreases the next checkpoint' do
+    goal = FactoryGirl.create(:goal,  end_date: Date.today + 2.weeks,
+      starting_point: 20, target: 0)
+      checkpoint = Checkpoint.unit_decrease(goal)
+      expect(checkpoint).to eql(10.0)
+    end
+  end
+
 
   describe '.checkpoints_remaining' do
     it 'returns the correct number of remaining checkpoints' do
